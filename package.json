@@ -1,0 +1,29 @@
+{
+  "name": "pages",
+  "version": "1.0.0",
+  "description": "blog page project",
+  "main": "index.js",
+  "scripts": {
+    "build:debug": "webpack --progress --colors --mode development",
+    "build": "babel server/src --out-dir server/build && webpack --progress --colors --mode production",
+    "start": "node server/build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EJShim/pages.git"
+  },
+  "author": "EJShim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EJShim/pages/issues"
+  },
+  "homepage": "https://github.com/EJShim/pages#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.16.4",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
