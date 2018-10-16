@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build:debug": "webpack --progress --colors --mode development",
-    "build": "babel server/src --out-dir server/build && webpack --progress --colors --mode production",
-    "start": "node server/build/index.js"
+    "build": "babel src/server --out-dir build && webpack --progress --colors --mode production",
+    "start": "node build/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,13 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "^1.7.0",
+    "copy-webpack-plugin": "^4.5.3",
     "express": "^4.16.4",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   }
 }
