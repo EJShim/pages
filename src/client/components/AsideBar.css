@@ -1,0 +1,45 @@
+.aside-bar{
+    float: left;
+    width: 150px;
+    background-color: #222;
+    height: 100%;
+    flex-direction: row;
+}
+.aside-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.aside-bar li {
+    width: 100%;
+}
+
+.aside-bar li:first-child{
+    padding: 6px 0px 6px 16px;
+    text-align: left;
+    color: #bbb;
+    background-color: #333;
+    display: block;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.aside-bar li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.aside-bar li a{
+    padding: 5px 16px;
+    text-align: left;
+    color: #ddd;
+    display: block;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.aside-bar .active {
+    background-color: #4CAF50;
+}
