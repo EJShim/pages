@@ -20,5 +20,10 @@ module.exports = {
             {from:path.join(__dirname, 'public/index.css'), to:path.join(__dirname,'build', 'public')},
             {from:path.join(__dirname, 'public/favicon.ico'), to:path.join(__dirname,'build', 'public')}            
         ])
-    ]
+    ],
+    resolve:{
+        alias:{
+            K_Manager$ : path.resolve(__dirname, 'src/client/vtkapp/managers/K_Manager.js')
+        }
+    }
 }

@@ -48,6 +48,10 @@ class K_Manager{
         this.genericRenderWindowCollection.push(genericRenderWindow);
     }
 
+    static Clear(){
+        this.genericRenderWindowCollection = [];
+    }
+
     static Redraw(){
         for(let genericWindow of this.genericRenderWindowCollection){
 

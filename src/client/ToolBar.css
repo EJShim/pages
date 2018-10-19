@@ -17,7 +17,7 @@
     float: left;
 }
 
-.tool-bar li:last-child {
+.tool-bar li:nth-last-child(-n+2) {
     float: right;
     font-weight: 800;
 }

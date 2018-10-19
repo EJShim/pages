@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:debug": "webpack --progress --colors --mode development",
+    "watch": "webpack-dev-server --content-base build/public",
     "build": "babel src/server --out-dir build && webpack --progress --colors --mode production",
     "start": "node build/index.js"
   },
@@ -35,6 +36,7 @@
   "dependencies": {
     "css-loader": "^1.0.0",
     "shader-loader": "^1.3.1",
-    "style-loader": "^0.23.1"
+    "style-loader": "^0.23.1",
+    "webpack-dev-server": "^3.1.9"
   }
 }

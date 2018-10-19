@@ -31,11 +31,6 @@
   }
 }
 
-#Wrapper{
-  display: block;
-  height: 100%;
-}
-
 #Container{
   display: flex;
   height: 95vh;
