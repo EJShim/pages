@@ -23,7 +23,8 @@ module.exports = {
     ],
     resolve:{
         alias:{
-            K_Manager$ : path.resolve(__dirname, 'src/client/vtkapp/managers/K_Manager.js')
+            K_Manager$ : path.resolve(__dirname, 'src/client/managers/K_Manager.js'),
+            ActionTypes$ : path.resolve(__dirname, 'src/client/managers/ActionTypes.js')
         }
     }
 }

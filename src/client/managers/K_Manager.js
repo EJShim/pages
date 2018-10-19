@@ -12,6 +12,7 @@ import vtkConeSource from 'vtk.js/Sources/Filters/Sources/ConeSource';
 import vtkMapper from 'vtk.js/Sources/Rendering/Core/Mapper';
 import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 
+import K_GUIManager from './K_GUIManager';
 
 
 //test
@@ -19,6 +20,12 @@ import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 class K_Manager{
     static New(){
         this.genericRenderWindowCollection = [];
+
+        this.guiManager = new K_GUIManager();
+    }
+
+    static GUIManager(){
+        return this.guiManager;
     }
 
     static AddRenderer(container){
