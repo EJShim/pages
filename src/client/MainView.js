@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 //Two different Components
+import Intro from './Intro';
 import VTKApp from './vtkapp/App';
 import HomePage from './homepage/App';
 import ToolBar from './ToolBar'
@@ -35,7 +36,7 @@ class MainView extends Component{
 
     render(){
         
-        let mainContent;
+        let mainContent=<Intro/>;
 
         if(this.state.currentView =="HOMEPAGE"){
             mainContent = <HomePage/>;
