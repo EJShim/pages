@@ -20,16 +20,16 @@
   "homepage": "https://github.com/EJShim/pages#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "copy-webpack-plugin": "^4.5.3",
-    "express": "^4.16.4",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.5.3",
+    "express": "^4.16.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "vtk.js": "^7.13.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
     "worker-loader": "^2.0.0"
   },
   "dependencies": {

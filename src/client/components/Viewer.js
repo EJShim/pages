@@ -7,7 +7,10 @@ export default class Viewer extends Component {
 
     componentDidMount(){
         //After render() function
-        K_Manager.SetRenderer( document.querySelector('#viewer1') );
+        K_Manager.AddRenderer( document.querySelector('#viewer1') );
+        K_Manager.AddRenderer( document.querySelector('#viewer2') );
+        K_Manager.AddRenderer( document.querySelector('#viewer3') );
+        K_Manager.AddRenderer( document.querySelector('#viewer4') );
         K_Manager.Redraw();
     }
 

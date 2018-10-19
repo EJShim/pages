@@ -18,17 +18,16 @@ import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 
 class K_Manager{
     static New(){
-        this.renderWindow = null;
-        this.renderer = null;
+        this.genericRenderWindowCollection = [];
     }
 
-    static SetRenderer(container){
+    static AddRenderer(container){
         const genericRenderWindow = vtkGenericRenderWindow.newInstance();
 
         // VTK renderWindow/renderer
-        this.renderWindow = genericRenderWindow.getRenderWindow();
-        this.renderer = genericRenderWindow.getRenderer();
-        this.renderer.setBackground(0.0, 0.5, 0.0);
+        const renderWindow = genericRenderWindow.getRenderWindow();
+        const renderer = genericRenderWindow.getRenderer();
+        renderer.setBackground(Math.random()*0.2, Math.random()*0.5, Math.random()*0.5);
         genericRenderWindow.setContainer(container);
         //not properly working on microsoft edge,, there is no standard for handling resize event
         // new ResizeSensor(container, genericRenderWindow.resize);
@@ -42,13 +41,22 @@ class K_Manager{
         mapper.setInputConnection(coneSource.getOutputPort());
         const actor = vtkActor.newInstance();
         actor.setMapper(mapper);
+        actor.getProperty().setColor(Math.random(), Math.random(), Math.random());
+        renderer.addActor(actor);
 
-        this.renderer.addActor(actor);
+
+        this.genericRenderWindowCollection.push(genericRenderWindow);
     }
 
     static Redraw(){
-        this.renderer.resetCamera();
-        this.renderWindow.render();
+        for(let genericWindow of this.genericRenderWindowCollection){
+
+            const renderWindow = genericWindow.getRenderWindow();
+            const renderer = genericWindow.getRenderer();
+            renderer.resetCamera();
+            renderWindow.render();
+        }
+        
     }
 }
 
