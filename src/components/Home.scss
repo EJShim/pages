@@ -1,0 +1,113 @@
+
+
+
+.Home{
+
+    height:100%;
+    
+    //Set Display Mode
+    display: flex;
+    flex-wrap: wrap;
+
+
+    //Background Animation Test
+    background: linear-gradient(342deg, #6c1f95, #111663);
+    background-size: 400% 400%;
+
+    -webkit-animation: backgroundAnim 13s ease infinite;
+    -moz-animation: backgroundAnim 13s ease infinite;
+    -o-animation: backgroundAnim 13s ease infinite;
+    animation: backgroundAnim 13s ease infinite;
+
+    @-webkit-keyframes backgroundAnim {
+        0%{background-position:66% 0%}
+        50%{background-position:35% 100%}
+        100%{background-position:66% 0%}
+    }
+    @-moz-keyframes backgroundAnim {
+        0%{background-position:66% 0%}
+        50%{background-position:35% 100%}
+        100%{background-position:66% 0%}
+    }
+    @-o-keyframes backgroundAnim {
+        0%{background-position:66% 0%}
+        50%{background-position:35% 100%}
+        100%{background-position:66% 0%}
+    }
+    @keyframes backgroundAnim { 
+        0%{background-position:66% 0%}
+        50%{background-position:35% 100%}
+        100%{background-position:66% 0%}
+    }
+
+
+
+    //Children
+    div {
+        background-color: rgb(51, 131, 52);
+        width: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+      }
+
+      @for $i from 1 through 100 {
+        div:nth-child(#{$i}) { 
+            //In Animaion    
+            position:relative;
+            -webkit-animation: intro random(3)+s;
+            -moz-animation: intro random(3)+s;
+            -ms-animation: intro random(3)+s;
+            animation: intro random(3)+s;
+        
+            
+            @-webkit-keyframes intro {            
+                0%{
+                    opacity: 0.0;
+                    left:random(300) + px;
+                }
+                100%{
+                    opacity: 1.0;
+                    left:0px;
+                }
+            }
+
+            @-moz-keyframes intro {
+                0%{
+                    opacity: 0.0;
+                    left:random(300) + px;
+                }
+                100%{
+                    opacity: 1.0;
+                    left:0px;
+                }
+            }
+
+            @-ms-keyframes intro {
+                0%{
+                    opacity: 0.0;
+                    left:random(300) + px;
+                }
+                100%{
+                    opacity: 1.0;
+                    left:0px;
+                }
+            }
+
+            @keyframes intro {
+                0%{
+                    opacity: 0.0;
+                    left:random(300) + px;
+                }
+                100%{
+                    opacity: 1.0;
+                    left:0px;
+                }
+            }
+        }
+      }
+
+      
+      
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import ToolBar from 'components/ToolBar';
+import Home from 'components/Home';
 import 'App.scss'
 
 class App extends React.Component{
@@ -11,7 +12,7 @@ class App extends React.Component{
         return(
             <div class='App'> 
                 <ToolBar/>
-                Hello World
+                <Home/>
             </div>
         );
     }
