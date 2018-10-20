@@ -1,4 +1,5 @@
 import React from 'react';
+import ToolBar from 'components/ToolBar';
 import 'App.scss'
 
 class App extends React.Component{
@@ -8,7 +9,10 @@ class App extends React.Component{
 
     render(){
         return(
-            <div class='container'> Hello World! </div>
+            <div class='App'> 
+                <ToolBar/>
+                Hello World
+            </div>
         );
     }
 }
