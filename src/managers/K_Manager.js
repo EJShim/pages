@@ -6,13 +6,10 @@ import vtkInteractorStyleManipulator from 'vtk.js/Sources/Interaction/Style/Inte
 // import K_MeshManager from 'K_MeshManager.js'
 // import K_VolumeManager from 'K_VolumeManager.js'
 
-
 //For Test
 import vtkConeSource from 'vtk.js/Sources/Filters/Sources/ConeSource';
 import vtkMapper from 'vtk.js/Sources/Rendering/Core/Mapper';
 import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
-
-import K_GUIManager from './K_GUIManager';
 
 
 //test
@@ -20,12 +17,6 @@ import K_GUIManager from './K_GUIManager';
 class K_Manager{
     static New(){
         this.genericRenderWindowCollection = [];
-
-        this.guiManager = new K_GUIManager();
-    }
-
-    static GUIManager(){
-        return this.guiManager;
     }
 
     static AddRenderer(container){

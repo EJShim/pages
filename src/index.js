@@ -1,23 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-
-import './index.css';
-import MainViewContainer from './MainView';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from 'serviceWorker';
+//Module
+import App from 'App';
 import K_Manager from 'K_Manager';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+
 
 // Initialize Manager
 K_Manager.New();
-const store = createStore(K_Manager.GUIManager().SetViewMode);
+
 
 // Render GUI
 ReactDOM.render(
-    <Provider store={store}>
-        <MainViewContainer />
-    </Provider>
+        <App/>
 , 
 document.getElementById('root'));
 

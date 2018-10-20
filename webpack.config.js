@@ -2,7 +2,7 @@ var path = require("path");
 var CopyPlugin = require('copy-webpack-plugin');
 var vtkRules = require('vtk.js/Utilities/config/dependency.js').webpack.v2.rules;
 
-const sourcePath = path.join(__dirname, 'src/client');
+const sourcePath = path.join(__dirname, 'src');
 const outputPath = path.join(__dirname, 'build/public');
 
 module.exports = {
@@ -11,7 +11,8 @@ module.exports = {
     module:{
         rules:[
             { test: /\.js$/, loader: 'babel-loader', query:{presets:['babel-preset-env', 'babel-preset-react']}},
-            { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]}
+            { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]},
+            { test: /\.scss$/, use: [ 'style-loader', 'css-loader', 'sass-loader' ]}
         ].concat(vtkRules)
     },
     plugins:[
@@ -22,9 +23,12 @@ module.exports = {
         ])
     ],
     resolve:{
+        modules: [            
+            'node_modules',
+            'src'
+        ],
         alias:{
-            K_Manager$ : path.resolve(__dirname, 'src/client/managers/K_Manager.js'),
-            ActionTypes$ : path.resolve(__dirname, 'src/client/managers/ActionTypes.js')
+            K_Manager$ : path.resolve(__dirname, 'src/managers/K_Manager.js'),            
         }
     }
 }
