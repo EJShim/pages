@@ -5,17 +5,16 @@ const animation_background = keyframes`
     0%{background-position:66% 0%}
     50%{background-position:35% 100%}
     100%{background-position:66% 0%}
-`
+`;
 
 const Container = styled.div`
     flex: 1;
     display: flex;
+    justify-content:space-around;
     flex-wrap: wrap;
-
     
-
-    background: linear-gradient(342deg, #6c1f95, #111663);
-    background-size: 400% 400%;
+    background: linear-gradient(342deg, rgb(142, 56, 10), rgb(10, 14, 123));
+    background-size: 200% 200%;
     animation : ${animation_background} 5s ease infinite;
 `;
 
@@ -44,8 +43,8 @@ const animation_intro = (props) => {
 
 const Content = styled.div`
         
-        width: 30vw;
-        height:20vh;
+        width: 250px;
+        height:150px;
         margin: 10px;
 
         display: flex;
@@ -53,7 +52,8 @@ const Content = styled.div`
         justify-content: center;
         text-align: center;
         font-size: 30px;
-        background-color: ${props=>props.backGround};
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: ${props=>props.backGround};        
         animation: ${animation_intro} ${props=>props.introDelay} ease;
 
 
@@ -76,7 +76,7 @@ class Video extends React.Component{
         for(let i=0 ; i<Math.floor(Math.random()*100) ; i++){
 
             //Set Random Color
-            const color = "rgb(32, 255, 32)";            
+            const color = "rgb(32, 57, 128)";            
             const introDelay = (Math.random()).toString() + 's';
 
 

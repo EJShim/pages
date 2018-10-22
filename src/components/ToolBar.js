@@ -14,15 +14,8 @@ const _ToolBar = styled.div`
         border-radius: 25px;
         margin:10px;
         padding:10px;
-        background-color:rgb(32, 32, 128);
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -o-user-select: none;
+        background-color:rgb(32, 32, 128);        
         user-select: none;
-    
         font-family: "Times New Roman", Times, serif;            
         color:white;        
     }
@@ -53,7 +46,8 @@ class ToolBar extends React.Component{
             <_ToolBar>
                 <div onClick={this.props.changeView}>Home</div>
                 <div onClick={this.props.changeView}>Portfolio</div>
-                <div onClick={this.props.changeView}>Video</div>                
+                <div onClick={this.props.changeView}>Video</div>
+                <div onClick={this.props.changeView}>VTK</div>                
             </_ToolBar>            
         );
     }

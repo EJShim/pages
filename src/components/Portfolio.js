@@ -11,11 +11,9 @@ const Container = styled.div`
     flex: 1;
     display: flex;
     flex-wrap: wrap;
-
-    
-
-    background: linear-gradient(342deg, #6c1f95, #111663);
-    background-size: 400% 400%;
+    justify-content: space-around;
+    background: linear-gradient(342deg, rgb(100, 12, 132), rgb(12, 130, 114));
+    background-size: 200% 200%;
     animation : ${animation_background} 5s ease infinite;
 `;
 
@@ -44,8 +42,8 @@ const animation_intro = (props) => {
 
 const Content = styled.div`
         
-        width: 30vw;
-        height:20vh;
+        width: 250px;
+        height:150px;
         margin: 10px;
 
         display: flex;
@@ -54,10 +52,11 @@ const Content = styled.div`
         text-align: center;
         font-size: 30px;
         background-color: ${props=>props.backGround};
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         animation: ${animation_intro} ${props=>props.introDelay} ease;
 
 
-        transition: transform 1s, background-color 1s;
+        transition: all 1s;
 
         &:hover{
             transform: scale(1.1);
@@ -68,7 +67,13 @@ const Content = styled.div`
 
 class Portfolio extends React.Component{
     constructor(props){
-        super(props);        
+        super(props);
+
+        this.transitionEnd = this.transitionEnd.bind(this);
+    }
+
+    transitionEnd(){
+        
     }
 
     render(){
@@ -76,11 +81,12 @@ class Portfolio extends React.Component{
         for(let i=0 ; i<Math.floor(Math.random()*100) ; i++){
 
             //Set Random Color
-            const color = "rgb(" + (Math.random()*128.0).toString() +"," + (Math.random()*255.0).toString() + "," + (Math.random()*128.0).toString() + ")";            
+            const color = "rgb(" + Math.floor(Math.random()*128.0).toString() +"," + Math.floor(Math.random()*255.0).toString() + "," + Math.floor(Math.random()*128.0).toString() + ")";
+            
             const introDelay = (Math.random()).toString() + 's';
 
 
-            content_list.push(<Content backGround = {color} introDelay={introDelay}> {i} </Content>  );
+            content_list.push(<Content onTransitionEnd={this.transitionEnd} backGround = {color} introDelay={introDelay}> {i} </Content>  );
         }
 
         

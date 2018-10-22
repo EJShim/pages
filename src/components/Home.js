@@ -11,8 +11,7 @@ const Container = styled.div`
     flex: 1;
     display: flex;
     flex-wrap: wrap;
-
-    
+    justify-content:space-around;
 
     background: linear-gradient(342deg, #6c1f95, #111663);
     background-size: 400% 400%;
@@ -60,8 +59,8 @@ const animation_intro = (props) => {
 
 const Content = styled.div`
         
-        width: 30vw;
-        height:20vh;
+        width: 250px;
+        height:150px;
         margin: 10px;
 
         display: flex;
@@ -70,10 +69,11 @@ const Content = styled.div`
         text-align: center;
         font-size: 30px;
         background-color: ${props=>props.backGround};
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         animation: ${animation_intro} ${props=>props.animationDelay} ease;
 
 
-        transition: transform 1s, background-color 1s;
+        transition: all 1s;
 
         &:hover{
             transform: scale(1.1);

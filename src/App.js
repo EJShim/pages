@@ -3,6 +3,7 @@ import ToolBar from 'components/ToolBar';
 import Home from 'components/Home';
 import Video from 'components/Video';
 import Portfolio from 'components/Portfolio';
+import VTKApp from 'components/VTKApp';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -40,6 +41,8 @@ class App extends React.Component{
             content = <Video/>
         }else if(this.state.currentView =='Portfolio'){
             content = <Portfolio/>
+        }else if(this.state.currentView == 'VTK'){
+            content = <VTKApp/>
         }
 
         return(

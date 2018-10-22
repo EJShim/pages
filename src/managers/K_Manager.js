@@ -1,7 +1,7 @@
 import vtkGenericRenderWindow from 'vtk.js/Sources/Rendering/Misc/GenericRenderWindow'
 import vtkInteractorStyleManipulator from 'vtk.js/Sources/Interaction/Style/InteractorStyleManipulator';
 // For resize Handling,, vulky
-// import {ResizeSensor}     from 'css-element-queries'
+import {ResizeSensor}     from 'css-element-queries'
 //Mesh Manager
 // import K_MeshManager from 'K_MeshManager.js'
 // import K_VolumeManager from 'K_VolumeManager.js'
@@ -29,7 +29,6 @@ class K_Manager{
         genericRenderWindow.setContainer(container);
         //not properly working on microsoft edge,, there is no standard for handling resize event
         // new ResizeSensor(container, genericRenderWindow.resize);
-        genericRenderWindow.resize();
 
 
 
@@ -48,6 +47,12 @@ class K_Manager{
 
     static Clear(){
         this.genericRenderWindowCollection = [];
+    }
+
+    static HandleResize(){
+        for(let genericWindow of this.genericRenderWindowCollection){
+            genericWindow.resize();            
+        }
     }
 
     static Redraw(){
