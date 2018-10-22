@@ -34,8 +34,8 @@
     "worker-loader": "^2.0.0"
   },
   "dependencies": {
-    "css-element-queries": "^1.0.5",
     "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
     "node-sass": "^4.9.4",
     "npm": "^6.4.1",
     "sass-loader": "^7.1.0",

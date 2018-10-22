@@ -12,7 +12,8 @@ module.exports = {
         rules:[
             { test: /\.js$/, loader: 'babel-loader', query:{presets:['babel-preset-env', 'babel-preset-react']}},
             { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]},
-            { test: /\.scss$/, use: [ 'style-loader', 'css-loader', 'sass-loader' ]}
+            { test: /\.scss$/, use: [ 'style-loader', 'css-loader', 'sass-loader' ]},
+            { test: /\.(mov|mp4)$/, use: [{loader: 'file-loader',options: {name: '[path][name].[ext]'}  }]}
         ].concat(vtkRules)
     },
     plugins:[

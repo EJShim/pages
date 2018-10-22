@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, {keyframes} from  'styled-components';
+import sampleVid from 'resources/sample.mp4';
 
 const animation_background = keyframes`
     0%{background-position:66% 0%}
@@ -7,80 +8,63 @@ const animation_background = keyframes`
     100%{background-position:66% 0%}
 `
 
-const Container = styled.div`
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
+const blurFadeIn = keyframes`
 
-    background: linear-gradient(342deg, #6c1f95, #111663);
-    background-size: 400% 400%;
-    animation : ${animation_background} 5s ease infinite;
+	0% {
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		transform: scale(1.3);
+	}
+	50% {
+		opacity: 0.5;
+		text-shadow: 0px 0px 10px #fff;
+		transform: scale(1.1);
+	}
+	100% {
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		transform: scale(1);
+	}
+`;
+
+const Background = styled.video`
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index:-1;
 `;
 
 
-const animation_intro = (props) => {
+const Container = styled.div`
+    position:relative;
+    flex:1;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+    justify-content: center;    
+    
 
-    // Start from random position
-    let x_value = (Math.random() - 0.5) * 1000.0;
-    let y_value = (Math.random() - 0.5) * 1000.0;
-    let z_value = Math.random() * 0.3;
-    let transform_start = "translate(" + x_value.toString() + "px" + "," + y_value.toString() + "px)";
-    let scale_start = "scale(" + z_value.toString() + ")";
+    h1{
+        position: absolute;
+        top: 50%;
+        line-height: 100px;
+        height: 90px;
+        margin-top: -50px;
+        font-size: 90px;
+        width: 100%;
+        text-align: center;
 
+        font-family:'Arial';
+        font_size:70px;
+        color: white;
 
-    if(!props.destroy){
-        return keyframes`
-            0%{
-                opacity:0.0;
-                transform : ${scale_start};            
-            }
-            100%{
-                opacity:1.0; 
-                transform : scale(1.0);            
-            }
-        `;
-    }else{
-        return keyframes`
-            0%{
-                opacity:1.0; 
-                transform : scale(1.0);            
-            }
-            100%{
-                opacity:0.0;
-                transform : ${scale_start};            
-                
-            }
-        `;
+        animation: ${blurFadeIn} 12s ease-in forwards;
     }
 
-    
-}
-
-const Content = styled.div`
-        
-        width: 250px;
-        height:150px;
-        margin: 10px;
-
-        display: flex;
-        flex-direction:column;
-        justify-content: center;
-        text-align: center;
-        font-size: 30px;
-        background-color: ${props=>props.backGround};
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        animation: ${animation_intro} ${props=>props.animationDelay} ease;
-
-
-        transition: all 1s;
-
-        &:hover{
-            transform: scale(1.1);
-            background-color:rgb(128, 32, 32);
-        }
-
 `;
+
 
 class Home extends React.Component{
     constructor(props){
@@ -89,37 +73,23 @@ class Home extends React.Component{
         this.state={
             destroy:false
         }
-
-
     }
 
-    componentWillUnmount(){
-
-        console.log("component mounted, change color");
-        this.setState({
-            destroy:true
-        });
+    componentDidMount(){
+        document.querySelector("#background_vid").play();
     }
 
     render(){
 
-
-    //Initialize Content list
-    let content_list = [];
-    for(let i=0 ; i<Math.floor(Math.random()*100) ; i++){
-
-        //Set Random Color
-        const color = "rgb(128, 32, 32)";            
-        const animationDelay = (Math.random()).toString() + 's';
-
-
-        content_list.push(<Content destroy={this.state.destroy} backGround = {color} animationDelay={animationDelay}> {i} </Content>  );
-    }
-
         return(
             <Container>
-                {content_list}
+                <Background id="background_vid" autoplay muted loop>
+                    <source src={sampleVid} type="video/mp4"></source>
+                </Background>
+
+                <h1> EJ Shim </h1>
             </Container>
+            
         );
         
     }

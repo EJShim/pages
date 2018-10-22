@@ -14,7 +14,7 @@ const _ToolBar = styled.div`
         border-radius: 25px;
         margin:10px;
         padding:10px;
-        background-color:rgb(32, 32, 128);        
+        background-color:rgba(32, 32, 128, 0.0);        
         user-select: none;
         font-family: "Times New Roman", Times, serif;            
         color:white;        
@@ -23,6 +23,11 @@ const _ToolBar = styled.div`
     div:hover{
         cursor: pointer;
         background-color:rgb(128, 32, 32);        
+    }
+
+    div:last-child{
+        margin-left: auto;
+        background-color:rgba(0, 0, 0, 0);
     }
 `;
 
@@ -47,7 +52,8 @@ class ToolBar extends React.Component{
                 <div onClick={this.props.changeView}>Home</div>
                 <div onClick={this.props.changeView}>Portfolio</div>
                 <div onClick={this.props.changeView}>Video</div>
-                <div onClick={this.props.changeView}>VTK</div>                
+                <div onClick={this.props.changeView}>VTK</div>
+                <div class="logo">EJ Shim</div>
             </_ToolBar>            
         );
     }

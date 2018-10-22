@@ -1,7 +1,5 @@
 import vtkGenericRenderWindow from 'vtk.js/Sources/Rendering/Misc/GenericRenderWindow'
 import vtkInteractorStyleManipulator from 'vtk.js/Sources/Interaction/Style/InteractorStyleManipulator';
-// For resize Handling,, vulky
-import {ResizeSensor}     from 'css-element-queries'
 //Mesh Manager
 // import K_MeshManager from 'K_MeshManager.js'
 // import K_VolumeManager from 'K_VolumeManager.js'
@@ -23,7 +21,7 @@ class K_Manager{
         const genericRenderWindow = vtkGenericRenderWindow.newInstance();
 
         // VTK renderWindow/renderer
-        const renderWindow = genericRenderWindow.getRenderWindow();
+        // const renderWindow = genericRenderWindow.getRenderWindow();
         const renderer = genericRenderWindow.getRenderer();
         renderer.setBackground(Math.random()*0.2, Math.random()*0.5, Math.random()*0.5);
         genericRenderWindow.setContainer(container);

@@ -61,7 +61,7 @@ const Content = styled.div`
 
         &:hover{
             transform: scale(1.1);
-            background-color:rgb(128, 32, 32);
+            background-color:rgba(128, 32, 32, 0.5);
         }
 
 `;
@@ -76,7 +76,7 @@ class Video extends React.Component{
         for(let i=0 ; i<Math.floor(Math.random()*100) ; i++){
 
             //Set Random Color
-            const color = "rgb(32, 57, 128)";            
+            const color = "rgba(32, 57, 128, 0.5)";            
             const introDelay = (Math.random()).toString() + 's';
 
 
