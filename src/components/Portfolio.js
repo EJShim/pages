@@ -30,32 +30,16 @@ const animation_intro = (props) => {
     let scale_start = "scale(" + z_value.toString() + ")";
 
 
-    if(!props.destroy){
-        return keyframes`
-            0%{
-                opacity:0.0;
-                transform : ${scale_start};            
-            }
-            100%{
-                opacity:1.0; 
-                transform : scale(1.0);            
-            }
-        `;
-    }else{
-        return keyframes`
-            0%{
-                opacity:1.0; 
-                transform : scale(1.0);            
-            }
-            100%{
-                opacity:0.0;
-                transform : ${scale_start};            
-                
-            }
-        `;
-    }
-
-    
+    return keyframes`
+        0%{
+            opacity:0.0;
+            transform : ${scale_start};            
+        }
+        100%{
+            opacity:1.0; 
+            transform : scale(1.0);            
+        }
+    `;
 }
 
 const Content = styled.div`
@@ -70,7 +54,7 @@ const Content = styled.div`
         text-align: center;
         font-size: 30px;
         background-color: ${props=>props.backGround};
-        animation: ${animation_intro} ${props=>props.animationDelay} ease;
+        animation: ${animation_intro} ${props=>props.introDelay} ease;
 
 
         transition: transform 1s, background-color 1s;
@@ -82,39 +66,26 @@ const Content = styled.div`
 
 `;
 
-class Home extends React.Component{
+class Portfolio extends React.Component{
     constructor(props){
         super(props);        
-        
-        this.state={
-            destroy:false
-        }
-
-
-    }
-
-    componentWillUnmount(){
-
-        console.log("component mounted, change color");
-        this.setState({
-            destroy:true
-        });
     }
 
     render(){
+        let content_list = [];
+        for(let i=0 ; i<Math.floor(Math.random()*100) ; i++){
+
+            //Set Random Color
+            const color = "rgb(" + (Math.random()*128.0).toString() +"," + (Math.random()*255.0).toString() + "," + (Math.random()*128.0).toString() + ")";            
+            const introDelay = (Math.random()).toString() + 's';
 
 
-    //Initialize Content list
-    let content_list = [];
-    for(let i=0 ; i<Math.floor(Math.random()*100) ; i++){
+            content_list.push(<Content backGround = {color} introDelay={introDelay}> {i} </Content>  );
+        }
 
-        //Set Random Color
-        const color = "rgb(128, 32, 32)";            
-        const animationDelay = (Math.random()).toString() + 's';
+        
+        
 
-
-        content_list.push(<Content destroy={this.state.destroy} backGround = {color} animationDelay={animationDelay}> {i} </Content>  );
-    }
 
         return(
             <Container>
@@ -126,4 +97,4 @@ class Home extends React.Component{
 }
 
 
-export default Home
+export default Portfolio

@@ -51,9 +51,9 @@ class ToolBar extends React.Component{
     render(){
         return(
             <_ToolBar>
-                <div onClick={this.clickHome}>Home</div>
-                <div>Portfolio</div>
-                <div>Video</div>                
+                <div onClick={this.props.changeView}>Home</div>
+                <div onClick={this.props.changeView}>Portfolio</div>
+                <div onClick={this.props.changeView}>Video</div>                
             </_ToolBar>            
         );
     }
