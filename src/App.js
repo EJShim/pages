@@ -1,7 +1,15 @@
 import React from 'react';
 import ToolBar from 'components/ToolBar';
 import Home from 'components/Home';
-import 'App.scss'
+import styled from 'styled-components';
+
+const Container = styled.div`
+    position:relative;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:column;
+`;
 
 class App extends React.Component{
     constructor(props){
@@ -10,10 +18,10 @@ class App extends React.Component{
 
     render(){
         return(
-            <div class='App'> 
+            <Container> 
                 <ToolBar/>
                 <Home/>
-            </div>
+            </Container>
         );
     }
 }
