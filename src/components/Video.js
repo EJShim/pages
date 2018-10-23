@@ -13,7 +13,7 @@ const Container = styled.div`
     justify-content:space-around;
     flex-wrap: wrap;
     
-    background: linear-gradient(342deg, rgb(142, 56, 10), rgb(10, 14, 123));
+    background: linear-gradient(342deg, #00F260, #0575E6);
     background-size: 200% 200%;
     animation : ${animation_background} 5s ease infinite;
 `;

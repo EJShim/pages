@@ -42,8 +42,7 @@ const Content = styled.div`
 
         &:hover{
             cursor: pointer;
-            transform: scale(1.1);
-            /* background-color:rgb(128, 32, 32); */
+            transform: scale(1.1);            
         }
 
         img{
@@ -60,13 +59,14 @@ class ContentCard extends React.Component{
     constructor(props){
         super(props);
     }
+
     render(){
         //Set Random Color and delay
         const color = "rgb(248,236,194)";
         const introDelay = (Math.random()).toString() + 's';
 
         return(
-            <Content backGround={color} introDelay={introDelay}>
+            <Content backGround={color} introDelay={introDelay} onClick={()=>this.props.show(this.props.information.url)}>
                 {this.props.information.image != null && <img src={this.props.information.image} alt="Lights"></img>}
                 <h3>{this.props.information.name} </h3>                
             </Content>
