@@ -79,13 +79,15 @@ const PopUpBackground = styled.div`
 const PopUp = styled.div`
     position:fixed; 
     left:10vw;
-    top:15vh;
+    top:5vh;
 
     width:80vw;        
-    height:70vh;
+    height:90vh;
     
     /*popup-styles*/
-    background-color:#fff;
+    background-color:rgba(32, 32, 32, 1.0);
+    color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding:10px;
     border:solid 2px #444;
     border-radius:10px;
