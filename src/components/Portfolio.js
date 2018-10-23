@@ -90,6 +90,17 @@ const PopUp = styled.div`
     border:solid 2px #444;
     border-radius:10px;
 
+
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+
+    iframe{
+        flex:90%;
+        max-height:90%;
+        background-color:#000000;
+    }
+
     
     animation : ${props => props.closing ? animation_popup_pop : animation_popup_intro} 0.3s ease;
 `;
@@ -164,7 +175,11 @@ class Portfolio extends React.Component{
                 {
                     this.state.popupURL != null && [
                         <PopUpBackground onClick={this.hide} closing={this.state.popupClosing} />,
-                        <PopUp closing={this.state.popupClosing}> {this.state.popupURL} </PopUp>
+                        <PopUp closing={this.state.popupClosing}> 
+                            <iframe src={this.state.popupURL}></iframe>
+                            <p>{this.state.popupURL} </p>
+                            
+                        </PopUp>
                     ]   
                 }
                          
