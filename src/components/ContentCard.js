@@ -25,19 +25,9 @@ const animation_intro = (props) => {
 
 const Content = styled.div`
 
-        @media screen and (max-width: 600px) {
-            width: 95vw;
-            height: 63vw;
-        }
 
-        @media screen and (min-width: 600px) {
-            width: 30vw;
-            height: 20vw;
-        }
-        
         user-select: none;
-        margin: 10px;
-        padding:5px;
+        margin-top: 10px;        
         display: flex;
         flex-direction:column;
         justify-content: center;
@@ -53,18 +43,16 @@ const Content = styled.div`
         &:hover{
             cursor: pointer;
             transform: scale(1.1);
-            background-color:rgb(128, 32, 32);
+            /* background-color:rgb(128, 32, 32); */
         }
 
         img{
+            margin-top: 8px;
+            vertical-align: middle;
             width:100%;
         }
 
 `;
-
-
-
-
 
 
 
