@@ -27,24 +27,23 @@ const blurFadeIn = keyframes`
 	}
 `;
 
-const Background = styled.video`
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%; 
-    min-height: 100%;
-    z-index:-1;
-`;
-
-
 const Container = styled.div`
-    position:relative;
-    flex:1;
-    display:flex;
-    flex-wrap:wrap;
-    flex-direction:column;
-    justify-content: center;    
-    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index:-2;
+
+    video {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        height: 100%
+    }
 
     h1{
         position: absolute;
@@ -58,7 +57,7 @@ const Container = styled.div`
 
         font-family:'Arial';
         font_size:70px;
-        color: white;
+        color: transparent;
 
         animation: ${blurFadeIn} 12s ease-in forwards;
     }
@@ -83,9 +82,9 @@ class Home extends React.Component{
 
         return(
             <Container>
-                <Background id="background_vid" autoplay muted loop>
+                <video id="background_vid" autoplay muted loop>
                     <source src={sampleVid} type="video/mp4"></source>
-                </Background>
+                </video>
 
                 <h1> EJ Shim </h1>
             </Container>
