@@ -34,6 +34,7 @@ const Container = styled.div`
     width: 100vw;
     height: 100vh;
     z-index:-2;
+    user-select: none;
 
     video {
         display: block;
@@ -42,7 +43,14 @@ const Container = styled.div`
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: -1;
-        height: 100%
+
+        @media screen and (max-aspect-ratio: 1920/1080) {
+            height: 100%;
+        }
+
+        @media screen and (min-aspect-ratio: 1920/1080) {
+            width: 100%;
+        }   
     }
 
     h1{

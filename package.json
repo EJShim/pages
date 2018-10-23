@@ -26,6 +26,7 @@
     "babel-preset-react": "^6.24.1",
     "copy-webpack-plugin": "^4.5.3",
     "express": "^4.16.4",
+    "file-loader": "^2.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "vtk.js": "^7.13.2",
@@ -35,7 +36,6 @@
   },
   "dependencies": {
     "css-loader": "^1.0.0",
-    "file-loader": "^2.0.0",
     "node-sass": "^4.9.4",
     "npm": "^6.4.1",
     "sass-loader": "^7.1.0",
