@@ -8,7 +8,7 @@ const _ToolBar = styled.div`
     
     flex: 0 1 auto;
     flex-basis: min-content;
-    background: rgba(85,85,85, 1.0);
+    background: rgba(32,32,32, 1.0);
     text-align:center;
 
     display:flex;
@@ -22,8 +22,7 @@ const _ToolBar = styled.div`
         padding:5px;        
         user-select: none;
         font-family: 'Open Sans', sans-serif;
-        font-weight: 800;
-        font-size: 22px;
+        font-weight: 800;        
         color:#EDEDED;
         
         transition: all 1s;
