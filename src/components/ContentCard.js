@@ -31,12 +31,12 @@ const Content = styled.div`
         display: flex;
         flex-direction:column;
         justify-content: center;
-        text-align: center;
-        font-size: 22px;
+        text-align: center;        
+        font-family: "Times New Roman", Times, serif;
         background-color: ${props=>props.backGround};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         animation: ${animation_intro} ${props=>props.introDelay} ease;
-
+        padding:10px;
 
         transition: all 1s;
 
@@ -46,7 +46,7 @@ const Content = styled.div`
         }
 
         img{
-            margin-top: 8px;
+            margin-top: 0px;
             vertical-align: middle;
             width:100%;
         }

@@ -63,7 +63,7 @@ const Container = styled.div`
         width: 100%;
         text-align: center;
 
-        font-family:'Arial';
+        font-family: 'Sancreek', cursive;        
         font_size:70px;
         color: transparent;
 
