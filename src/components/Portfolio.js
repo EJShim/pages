@@ -54,81 +54,119 @@ const animation_popup_intro =  keyframes`
     }
 `;
 
-const PopUp = styled.div`
+
+const animation_popup_pop =  keyframes`
+    0%{
+        opacity:1.0; 
+        transform : scale(1.0);        
+    }
+    100%{
+        opacity:0.0;
+        transform : scale(0.0);
+    }
+`;
+
+const PopUpBackground = styled.div`
     position:fixed;
     top:0px;
     left:0px;
     background-color:rgba(0, 0, 0, 0.5);
     width:100%;
     height:100%;    
-    animation : ${animation_popup_intro} 0.1s ease;
+    animation : ${ animation_popup_intro} 0.1s ease;
+`;
 
+const PopUp = styled.div`
+    position:fixed; 
+    left:10vw;
+    top:15vh;
 
-    .wrapper{
-        position:fixed; 
-        left:10vw;
-        top:15vh;
+    width:80vw;        
+    height:70vh;
+    
+    /*popup-styles*/
+    background-color:#fff;
+    padding:10px;
+    border:solid 2px #444;
+    border-radius:10px;
 
-        width:80vw;        
-        height:70vh;
-        
-        /*popup-styles*/
-        background-color:#fff;
-        padding:10px;
-        border:solid 2px #444;
-        border-radius:10px;
-
-        animation : ${animation_popup_intro} 0.3s ease;
-    }
+    
+    animation : ${props => props.closing ? animation_popup_pop : animation_popup_intro} 0.3s ease;
 `;
 
 class Portfolio extends React.Component{
     constructor(props){
         super(props);
 
-        this.state={
-            showFrame : false
+        this.state={            
+            popupURL : null,
+            popupClosing : false  
         }
 
-
+        
         //Event Handler
         this.show = this.show.bind(this);
         this.hide = this.hide.bind(this);
+        this.terminatePopup = this.terminatePopup.bind(this);
+
+
+        //initialize
+        this.initializeContent();
+    }
+
+    initializeContent(){
+        //Get Contents from DB(Not Using DB For Now)
+        this.content_list = [ [], [], [], [] ];
+        for(const [index, info] of portfolioData.entries()){
+            this.content_list[index%4].push(<ContentCard information={info} show={this.show}/>  );
+        }
     }
 
     show(url){
-        
-
         this.setState({
-            showFrame:true
+            popupURL:url
         });
     }
 
     hide(){
         this.setState({
-            showFrame:false
+            popupClosing:true
         });
     }
 
-    
-    render(){
+    terminatePopup(){
+        this.setState({
+            popupURL:null,
+            popupClosing : false
+        });
+    }
 
-        //Get Contents from DB(Not Using DB For Now)
-        let content_list = [ [], [], [], [] ];
-        for(const [index, info] of portfolioData.entries()){
-            content_list[index%4].push(<ContentCard information={info} show={this.show}/>  );
+    componentDidUpdate(){
+        if(this.state.popupClosing){
+            //Component Animation time is 0.3s
+            setTimeout( this.terminatePopup, 300 );
         }
+    }
 
+    
+    render(){        
+
+        
         
 
         return(
             <Container>
-                <div class="column">{content_list[0]}</div>
-                <div class="column">{content_list[1]}</div>
-                <div class="column">{content_list[2]}</div>
-                <div class="column">{content_list[3]}</div>
+                <div class="column">{this.content_list[0]}</div>
+                <div class="column">{this.content_list[1]}</div>
+                <div class="column">{this.content_list[2]}</div>
+                <div class="column">{this.content_list[3]}</div>
 
-                {this.state.showFrame && <PopUp onClick={this.hide}> <div class="wrapper"> popup </div> </PopUp>}
+                {
+                    this.state.popupURL != null && [
+                        <PopUpBackground onClick={this.hide} closing={this.state.popupClosing} />,
+                        <PopUp closing={this.state.popupClosing}> {this.state.popupURL} </PopUp>
+                    ]   
+                }
                          
             </Container>
         );
