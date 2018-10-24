@@ -2,20 +2,11 @@ import React from 'react';
 import styled, {keyframes} from  'styled-components';
 import K_Manager from 'K_Manager'
 
-const animation_background = keyframes`
-    0%{background-position:66% 0%}
-    50%{background-position:35% 100%}
-    100%{background-position:66% 0%}
-`;
 
 const Container = styled.div`        
     flex:1 1 0;
     display: flex;        
     flex-wrap: wrap;
-    
-    background: linear-gradient(342deg, rgb(142, 56, 10), rgb(10, 14, 123));
-    background-size: 200% 200%;
-    animation : ${animation_background} 5s ease infinite;
 
     div{        
         flex:1 1 0;

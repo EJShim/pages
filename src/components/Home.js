@@ -36,24 +36,37 @@ const Container_exp = styled.div`
 `;
 
 const Content = styled.div`
-    flex: 1 1 600px;
+    flex: 1 1 95vh;
     display:flex;    
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color:${props=>props.background};
+     
+`;
 
+const VideoContent = styled.div`
 
-    .title{
-        font-family: 'Sancreek', cursive;        
-        font-size:70px;
-        color: transparent;
-        animation: ${blurFadeIn} 5s ease-in forwards;
-    }
+    flex: 1 1 95vh;
+    display:flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#000;
+    z-index:-1;
+    
+    
+    video {
+        position:absolute;
+        overflow: hidden;
+        height:95vh;
+        /* transform:scale(1.5); */
+     }
+
 `;
 
 const GradientContent = styled.div`
-    flex: 1 1 600px;
+    flex: 1 1 90vh;
     display:flex;    
     flex-direction: column;
     justify-content: center;
@@ -67,55 +80,11 @@ const GradientContent = styled.div`
 
 const IntroTitle = styled.h1`
         font-family: 'Sancreek', cursive;        
-        font-size:70px;
+        font-size:90px;
         color: transparent;
         animation: ${blurFadeIn} 5s ease-in forwards;
         user-select: none;
-`;
-
-const Container = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index:-2;
-    user-select: none;
-
-    video {
-        display: block;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-
-        @media screen and (max-aspect-ratio: 1920/1080) {
-            height: 100%;
-        }
-
-        @media screen and (min-aspect-ratio: 1920/1080) {
-            width: 100%;
-        }   
-    }
-
-    h1{
-        position: absolute;
-        top: 50%;
-        line-height: 100px;
-        height: 90px;
-        margin-top: -50px;
-        font-size: 90px;
-        width: 100%;
-        text-align: center;
-
-        font-family: 'Sancreek', cursive;        
-        font_size:70px;
-        color: transparent;
-
-        animation: ${blurFadeIn} 12s ease-in forwards;
-    }
-
+        z-index:1000;
 `;
 
 
@@ -129,36 +98,40 @@ class Home extends React.Component{
     }
 
     componentDidMount(){
-        // document.querySelector("#background_vid").play();
+        document.querySelector("#background_vid").play();        
     }
 
     render(){
-        // <Container>
-        //         <video id="background_vid" autoplay muted loop>
-        //             <source src={sampleVid} type="video/mp4"></source>
-        //         </video>
-        //         <h1> EJ Shim </h1>
-        //     </Container>
+        const videoContent = (
+            <video id="background_vid" autoplay muted loop>                
+                <source src={sampleVid} type="video/mp4"></source>
+            </video>
+        );
+
+        
+
         return(
             <Container_exp>
-                <Content background="#111111">
+                <VideoContent>
                     <IntroTitle>EJ Shim</IntroTitle>
-                    <h2> First Intro Candidate </h2>
-                </Content>
+                    {videoContent}
+                </VideoContent>
                 <GradientContent>
                     <IntroTitle>EJ Shim</IntroTitle>
                     <h2> Second Candidate </h2>
                 </GradientContent>
+                <Content background="#111111">
+                    <IntroTitle>EJ Shim</IntroTitle>
+                    <h2> First Intro Candidate </h2>
+                </Content>                                           
                 <Content background="#FF4136">
                     <h2> Third Candidate.. will add more </h2>
-                </Content>
-                <Content background="#006E6D">                    
                 </Content>
                 <Content background="#0074D9">                    
                 </Content>
                 <Content background="#006E6D">                    
                 </Content>
-                <Content background="#3D9970">                    
+                <Content background="#3D9970">  
                 </Content>
                 <Content background="#FFDC00">                    
                 </Content>
