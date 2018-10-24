@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {keyframes} from  'styled-components';
-import sampleVid from 'resources/sample.mp4';
+import sampleVid from 'resources/sample.mov';
 
 const animation_background = keyframes`
     0%{background-position:66% 0%}
@@ -53,13 +53,13 @@ const VideoContent = styled.div`
     justify-content: center;
     align-items: center;
     background-color:#000;
-    z-index:-1;
+    z-index:-1;    
     
     
     video {
         position:absolute;
-        overflow: hidden;
-        height:95vh;
+        width:100%;
+        user-select: none;
         /* transform:scale(1.5); */
      }
 
