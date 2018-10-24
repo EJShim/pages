@@ -12,6 +12,7 @@ const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction:column;
+    align-items: stretch;
 `;
 
 class App extends React.Component{

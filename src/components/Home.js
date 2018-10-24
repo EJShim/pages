@@ -27,6 +27,52 @@ const blurFadeIn = keyframes`
 	}
 `;
 
+const Container_exp = styled.div`
+    flex:1;
+    display:flex;
+    flex-wrap:wrap;
+    align-items: stretch;
+    flex-direction:column;    
+`;
+
+const Content = styled.div`
+    flex: 1 1 600px;
+    display:flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:${props=>props.background};
+
+
+    .title{
+        font-family: 'Sancreek', cursive;        
+        font-size:70px;
+        color: transparent;
+        animation: ${blurFadeIn} 5s ease-in forwards;
+    }
+`;
+
+const GradientContent = styled.div`
+    flex: 1 1 600px;
+    display:flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(342deg, #00F260, #0575E6);
+    background-size: 150% 150%;
+    animation : ${animation_background} 5s ease infinite;
+`;
+
+
+
+const IntroTitle = styled.h1`
+        font-family: 'Sancreek', cursive;        
+        font-size:70px;
+        color: transparent;
+        animation: ${blurFadeIn} 5s ease-in forwards;
+        user-select: none;
+`;
+
 const Container = styled.div`
     position: absolute;
     top: 0;
@@ -83,20 +129,40 @@ class Home extends React.Component{
     }
 
     componentDidMount(){
-        document.querySelector("#background_vid").play();
+        // document.querySelector("#background_vid").play();
     }
 
     render(){
-
+        // <Container>
+        //         <video id="background_vid" autoplay muted loop>
+        //             <source src={sampleVid} type="video/mp4"></source>
+        //         </video>
+        //         <h1> EJ Shim </h1>
+        //     </Container>
         return(
-            <Container>
-                <video id="background_vid" autoplay muted loop>
-                    <source src={sampleVid} type="video/mp4"></source>
-                </video>
-
-                <h1> EJ Shim </h1>
-            </Container>
-            
+            <Container_exp>
+                <Content background="#111111">
+                    <IntroTitle>EJ Shim</IntroTitle>
+                    <h2> First Intro Candidate </h2>
+                </Content>
+                <GradientContent>
+                    <IntroTitle>EJ Shim</IntroTitle>
+                    <h2> Second Candidate </h2>
+                </GradientContent>
+                <Content background="#FF4136">
+                    <h2> Third Candidate.. will add more </h2>
+                </Content>
+                <Content background="#006E6D">                    
+                </Content>
+                <Content background="#0074D9">                    
+                </Content>
+                <Content background="#006E6D">                    
+                </Content>
+                <Content background="#3D9970">                    
+                </Content>
+                <Content background="#FFDC00">                    
+                </Content>
+            </Container_exp>
         );
         
     }

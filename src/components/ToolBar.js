@@ -6,7 +6,7 @@ import styled, {keyframes} from 'styled-components';
 
 const _ToolBar = styled.div`
     
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     flex-basis: min-content;
     background: rgba(32,32,32, 1.0);
     text-align:center;
