@@ -70,26 +70,26 @@ class VTKApp extends React.Component{
 
     componentDidMount(){
         //After render() function
-        K_Manager.AddRenderer( document.querySelector('#viewer0') );
-        K_Manager.AddRenderer( document.querySelector('#viewer1') );
-        K_Manager.AddRenderer( document.querySelector('#viewer2') );
-        K_Manager.AddRenderer( document.querySelector('#viewer3') );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer0') );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer1') );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer2') );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer3') );
 
         //Call Initial Renderer
-        K_Manager.HandleResize();
-        K_Manager.Redraw();
+        K_Manager.Mgr().HandleResize();
+        K_Manager.Mgr().Redraw();
 
         //Call After Animation Finished
         setTimeout(()=>{
-            K_Manager.HandleResize();
-            K_Manager.Redraw();
+            K_Manager.Mgr().HandleResize();
+            K_Manager.Mgr().Redraw();
         }, this.maxDelay);
         
         
     }
 
     componentWillUnmount(){
-        K_Manager.Clear();
+        K_Manager.Mgr().Clear();
     }
 
     render(){

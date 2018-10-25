@@ -13,11 +13,21 @@ import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 //test
 
 class K_Manager{
-    static New(){
+    static instance;
+
+    constructor(){
+        if(K_Manager.instance) return K_Manager.instance;
+
         this.genericRenderWindowCollection = [];
+
+        K_Manager.instance = this
     }
 
-    static AddRenderer(container){
+    static Mgr(){
+        return new K_Manager();
+    }
+
+    AddRenderer(container){
         const genericRenderWindow = vtkGenericRenderWindow.newInstance();
 
         // VTK renderWindow/renderer
@@ -43,17 +53,17 @@ class K_Manager{
         this.genericRenderWindowCollection.push(genericRenderWindow);
     }
 
-    static Clear(){
+    Clear(){
         this.genericRenderWindowCollection = [];
     }
 
-    static HandleResize(){
+    HandleResize(){
         for(let genericWindow of this.genericRenderWindowCollection){
             genericWindow.resize();            
         }
     }
 
-    static Redraw(){
+    Redraw(){
         for(let genericWindow of this.genericRenderWindowCollection){
 
             const renderWindow = genericWindow.getRenderWindow();
