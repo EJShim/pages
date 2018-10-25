@@ -56,8 +56,7 @@ class ToolBar extends React.Component{
     }
 
     clickHome(e){
-        e.preventDefault();
-        console.log("Home Clicked")
+        e.preventDefault();    
     }
 
     render(){
@@ -67,7 +66,7 @@ class ToolBar extends React.Component{
                 <div onClick={this.props.changeView}>Portfolio</div>
                 <div onClick={this.props.changeView}>Video</div>
                 <div onClick={this.props.changeView}>VTK</div>
-                <div class="logo">EJ Shim</div>
+                {/* <div class="logo">EJ Shim</div> */}
             </_ToolBar>            
         );
     }

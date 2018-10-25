@@ -28,22 +28,12 @@ const Container = styled.div`
 
     /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
     @media screen and (max-width: 600px) {
-        .column {
-            background-color:blue;
+        .column {            
             flex: 100%;
             max-width: 100%;
         }
     }
 
-    @media only screen 
-    and (min-device-width : 375px) 
-    and (max-device-width : 667px) {
-        .column {
-            background-color:red;
-            flex: 100%;
-            max-width: 100%;
-        }
-    }
 /*     
     @media only screen 
     and (min-device-width : 375px) 
