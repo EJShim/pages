@@ -34,8 +34,15 @@ const Container = styled.div`
         }
     }
 
-
-    
+    @media only screen 
+    and (min-device-width : 375px) 
+    and (max-device-width : 667px) {
+        .column {
+            flex: 100%;
+            max-width: 100%;
+        }
+    }
+/*     
     @media only screen 
     and (min-device-width : 375px) 
     and (max-device-width : 812px)
@@ -44,7 +51,7 @@ const Container = styled.div`
             flex: 100%;
             max-width: 100%;
         }
-    }
+    } */
 `;
 
 
