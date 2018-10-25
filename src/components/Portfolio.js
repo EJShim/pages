@@ -20,21 +20,26 @@ const Container = styled.div`
     padding: 0 4px;
     
     .column {        
-        flex: 25%;
-        max-width: 24%;
+        flex: 30%;
+        max-width: 30%;
         padding: 0 4px;        
     }
 
-    /* Responsive layout - makes a two column-layout instead of four columns */
-    @media screen and (max-width: 800px) {
-        .column {
-            flex: 50%;
-            max-width: 48%;
-        }
-    }
 
     /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
     @media screen and (max-width: 600px) {
+        .column {
+            flex: 100%;
+            max-width: 100%;
+        }
+    }
+
+
+    
+    @media only screen 
+    and (min-device-width : 375px) 
+    and (max-device-width : 812px)
+    and (-webkit-device-pixel-ratio : 3) {
         .column {
             flex: 100%;
             max-width: 100%;
@@ -129,9 +134,9 @@ class Portfolio extends React.Component{
 
     initializeContent(){
         //Get Contents from DB(Not Using DB For Now)
-        this.content_list = [ [], [], [], [] ];
+        this.content_list = [ [], [], [] ];
         for(const [index, info] of portfolioData.entries()){
-            this.content_list[index%4].push(<ContentCard information={info} show={this.show}/>  );
+            this.content_list[index%3].push(<ContentCard information={info} show={this.show}/>  );
         }
     }
 
@@ -171,8 +176,7 @@ class Portfolio extends React.Component{
             <Container>
                 <div class="column">{this.content_list[0]}</div>
                 <div class="column">{this.content_list[1]}</div>
-                <div class="column">{this.content_list[2]}</div>
-                <div class="column">{this.content_list[3]}</div>
+                <div class="column">{this.content_list[2]}</div>                
 
                 {
                     this.state.popupURL != null && [

@@ -33,8 +33,7 @@ class K_Manager{
         // VTK renderWindow/renderer
         // const renderWindow = genericRenderWindow.getRenderWindow();
         const renderer = genericRenderWindow.getRenderer();
-        renderer.setBackground(Math.random()*0.2, Math.random()*0.5, Math.random()*0.5);
-        genericRenderWindow.setContainer(container);
+        renderer.setBackground(Math.random()*0.2, Math.random()*0.5, Math.random()*0.5);        
         //not properly working on microsoft edge,, there is no standard for handling resize event
         // new ResizeSensor(container, genericRenderWindow.resize);
 
@@ -51,9 +50,12 @@ class K_Manager{
 
 
         this.genericRenderWindowCollection.push(genericRenderWindow);
+
+
+        genericRenderWindow.setContainer(container);
     }
 
-    Clear(){
+    Clear(){        
         this.genericRenderWindowCollection = [];
     }
 
