@@ -80,7 +80,7 @@ const GradientContent = styled.div`
 
 const IntroTitle = styled.h1`
         font-family: 'Sancreek', cursive;        
-        font-size:90px;
+        font-size:20vw;
         color: transparent;
         animation: ${blurFadeIn} 5s ease-in forwards;
         user-select: none;
