@@ -10,7 +10,11 @@ const animation_background = keyframes`
 `
 
 const Container = styled.div`
-    flex: 1;
+    @media screen and (max-width: 600px) {
+        flex:100%;
+    }
+
+    flex: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -18,11 +22,21 @@ const Container = styled.div`
     background-size: 200% 200%;
     animation : ${animation_background} 5s ease infinite;
     padding: 0 4px;
+    height:100vh;
+    overflow:scroll;
     
+    .header{
+        flex:100%;
+    }
     .column {        
         flex: 30%;
         max-width: 30%;
         padding: 0 4px;        
+    }
+
+    .footer{
+        flex:100%;
+        height:30px;
     }
 
 
@@ -173,9 +187,13 @@ class Portfolio extends React.Component{
 
         return(
             <Container>
+                <div class="header">
+                    <h1>Portfolio</h1>
+                </div>
                 <div class="column">{this.content_list[0]}</div>
                 <div class="column">{this.content_list[1]}</div>
                 <div class="column">{this.content_list[2]}</div>                
+                <div class="footer"></div>
 
                 {
                     this.state.popupURL != null && [

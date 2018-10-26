@@ -1,4 +1,5 @@
 import React from 'react';
+import SideBar from 'components/SideBar';
 import ToolBar from 'components/ToolBar';
 import Home from 'components/Home';
 import Video from 'components/Video';
@@ -10,9 +11,14 @@ const Container = styled.div`
     position:relative;
     min-height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction:column;
+    /* flex-wrap: wrap; */
+    
+    flex-direction:row;
     align-items: stretch;
+
+    @media screen and (max-width: 600px) {
+        flex-direction:column;
+    }
 `;
 
 class App extends React.Component{
@@ -46,9 +52,17 @@ class App extends React.Component{
             content = <VTKApp/>
         }
 
+        let menu = [
+            <div class="button" onClick={this.changeView}>Home</div>,
+            <div class="button" onClick={this.changeView}>Portfolio</div>,
+            <div class="button" onClick={this.changeView}>Video</div>,
+            <div class="button" onClick={this.changeView}>VTK</div>,
+        ];
+
         return(
-            <Container> 
-                <ToolBar changeView={this.changeView}/>
+            <Container>
+                <ToolBar menuItem={menu}/>
+                <SideBar menuItem={menu}/>                
                 {content}
             </Container>
         );

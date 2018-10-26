@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, {keyframes} from  'styled-components';
-import sampleVid from 'resources/sample.mov';
 
 const animation_background = keyframes`
     0%{background-position:66% 0%}
@@ -27,16 +26,22 @@ const blurFadeIn = keyframes`
 	}
 `;
 
-const Container_exp = styled.div`
-    flex:1;
+const Container = styled.div`
+
+    @media screen and (max-width: 600px) {
+        flex:100%;
+    }
+
+    flex:80%;
     display:flex;
-    flex-wrap:wrap;
     align-items: stretch;
-    flex-direction:column;    
+    flex-direction:column;
+    height:100vh;
+    overflow:scroll;
 `;
 
 const Content = styled.div`
-    flex: 1 1 95vh;
+    flex: 1 0 95vh;
     display:flex;    
     flex-direction: column;
     justify-content: center;
@@ -45,28 +50,8 @@ const Content = styled.div`
      
 `;
 
-const VideoContent = styled.div`
-
-    flex: 1 1 95vh;
-    display:flex;    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color:#000;
-    z-index:-1;    
-    
-    
-    video {
-        position:absolute;
-        width:100%;
-        user-select: none;
-        /* transform:scale(1.5); */
-     }
-
-`;
-
 const GradientContent = styled.div`
-    flex: 1 1 90vh;
+    flex: 1 0 90vh;
     display:flex;    
     flex-direction: column;
     justify-content: center;
@@ -98,24 +83,15 @@ class Home extends React.Component{
     }
 
     componentDidMount(){
-        document.querySelector("#background_vid").play();        
+     
     }
 
-    render(){
-        const videoContent = (
-            <video id="background_vid" autoplay muted loop>                
-                <source src={sampleVid} type="video/mp4"></source>
-            </video>
-        );
+    render(){        
 
         
 
         return(
-            <Container_exp>
-                <VideoContent>
-                    <IntroTitle>EJ Shim</IntroTitle>
-                    {videoContent}
-                </VideoContent>
+            <Container>                
                 <GradientContent>
                     <IntroTitle>EJ Shim</IntroTitle>
                     <h2> Second Candidate </h2>
@@ -135,7 +111,7 @@ class Home extends React.Component{
                 </Content>
                 <Content background="#FFDC00">                    
                 </Content>
-            </Container_exp>
+            </Container>
         );
         
     }

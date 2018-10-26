@@ -3,8 +3,11 @@ import styled, {keyframes} from  'styled-components';
 import K_Manager from 'K_Manager'
 
 
-const Container = styled.div`        
-    flex:1 1 0;
+const Container = styled.div`
+    @media screen and (max-width: 600px) {
+            flex:100% 1 0;
+    }
+    flex:80% 1 0;
     display: flex;        
     flex-wrap: wrap;
 

@@ -4,14 +4,20 @@ import styled, {keyframes} from 'styled-components';
 
 
 
-const _ToolBar = styled.div`
+const Container = styled.div`
     
     flex: 0 0 auto;
     flex-basis: min-content;
     background: rgba(32,32,32, 1.0);
     text-align:center;
+    overflow:scroll;
+    display:none;
 
-    display:flex;
+
+    @media screen and (max-width: 600px) {
+        display:flex;
+    }
+    
 
     div{
         display:flex;
@@ -61,13 +67,10 @@ class ToolBar extends React.Component{
 
     render(){
         return(
-            <_ToolBar>
-                <div onClick={this.props.changeView}>Home</div>
-                <div onClick={this.props.changeView}>Portfolio</div>
-                <div onClick={this.props.changeView}>Video</div>
-                <div onClick={this.props.changeView}>VTK</div>
+            <Container>
+                {this.props.menuItem}
                 {/* <div class="logo">EJ Shim</div> */}
-            </_ToolBar>            
+            </Container>            
         );
     }
 }

@@ -8,14 +8,19 @@ const animation_background = keyframes`
 `;
 
 const Container = styled.div`
-    flex: 1;
+    @media screen and (max-width: 600px) {
+        flex:100%;
+    }
+    
+    flex: 80%;
     display: flex;
     justify-content:space-around;
     flex-wrap: wrap;
-    
     background: linear-gradient(342deg, #00F260, #0575E6);
     background-size: 200% 200%;
     animation : ${animation_background} 5s ease infinite;
+    height:100vh;
+    overflow:scroll;
 `;
 
 
