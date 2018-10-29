@@ -4,17 +4,15 @@ import styled, {keyframes} from 'styled-components';
 
 
 
-const Container = styled.div`    
-
-
+const Container = styled.div`
     flex-basis: min-content;
-    background: rgba(32,32,32, 1.0);
+    background-color: #001f3f;
     text-align:center;
     overflow:auto;
     display:none;
 
 
-    @media screen and (max-width: 600px) {        
+    @media screen and (max-width: 600px) {
         display:flex;
     }
     
@@ -42,16 +40,11 @@ const Container = styled.div`
     .logo{
         font-family: 'Mr Dafoe', cursive;
         color:rgba(41, 128, 185,1.0);
-        text-shadow: #000000 3px 2px 0;
-        margin-left: auto;                
-    }
-
-    .logo:hover{
-        background-color:rgba(0, 0, 0, 0);
+        text-shadow: #000000 3px 2px 0;        
     }
 `;
 
-class ToolBar extends React.Component{
+class V_ToolBar extends React.Component{
 
     constructor(props){
         super(props);
@@ -75,4 +68,4 @@ class ToolBar extends React.Component{
     }
 }
 
-export default ToolBar;
+export default V_ToolBar;

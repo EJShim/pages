@@ -1,12 +1,10 @@
 import vtkGenericRenderWindow from 'vtk.js/Sources/Rendering/Misc/GenericRenderWindow'
 import vtkInteractorStyleManipulator from 'vtk.js/Sources/Interaction/Style/InteractorStyleManipulator';
 //Mesh Manager
-// import K_MeshManager from 'K_MeshManager.js'
-// import K_VolumeManager from 'K_VolumeManager.js'
+import K_MeshManager from 'managers/K_MeshManager.js'
+import K_VolumeManager from 'managers/K_VolumeManager.js'
 
 //For Test
-import vtkConeSource from 'vtk.js/Sources/Filters/Sources/ConeSource';
-import vtkMapper from 'vtk.js/Sources/Rendering/Core/Mapper';
 import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 
 
@@ -14,6 +12,8 @@ import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 
 class K_Manager{
     static instance;
+    static meshManager;
+    static volumeManager;
 
     constructor(){
         if(K_Manager.instance) return K_Manager.instance;
@@ -27,6 +27,22 @@ class K_Manager{
         return new K_Manager();
     }
 
+    static MeshMgr(){
+        if(K_Manager.meshManager == null){
+            K_Manager.meshManager = new K_MeshManager();
+        }
+
+        return K_Manager.meshManager;
+    }
+
+    static VolumeMgr(){
+        if(K_Manager.volumeManager == null){
+            K_Manager.volumeManager = new K_VolumeManager();
+        }
+
+        return K_Manager.volumeManager;
+    }
+
     AddRenderer(container, idx){
 
         if(this.genericRenderWindowCollection[idx] == null){
@@ -38,22 +54,14 @@ class K_Manager{
             const renderer = genericRenderWindow.getRenderer();
             renderer.setBackground(0, 0, 0);        
 
-
-            ///Temp
-            const coneSource = vtkConeSource.newInstance({ height: 1.0 });
-            const mapper = vtkMapper.newInstance();
-            mapper.setInputConnection(coneSource.getOutputPort());
-            const actor = vtkActor.newInstance();
-            actor.setMapper(mapper);
-            actor.getProperty().setColor(Math.random(), Math.random(), Math.random());
+            let actor = K_Manager.MeshMgr().initializeMesh();
             renderer.addActor(actor);
-
-         
         }
         this.genericRenderWindowCollection[idx].setContainer(container);
         //genericRenderWindow.setContainer(container);
         
     }
+
 
     Clear(){        
         this.genericRenderWindowCollection = [];

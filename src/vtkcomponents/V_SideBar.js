@@ -5,9 +5,6 @@ import styled, {keyframes} from 'styled-components';
 
 
 
-
-
-
 const Container = styled.div`
 
 
@@ -15,13 +12,11 @@ const Container = styled.div`
         display:none;
     }
 
-    
-
     transition:flex 1s;
-    
-    ${props => props.isVTK ? "flex:0%" : "flex:20%"};
+    ${props => props.isVTK ? "flex:20%" : "flex:0%"};
+            
     flex-basis: min-content;
-    background: rgba(32,32,32, 1.0);
+    background-color: #001f3f;
     text-align:center;
     display:flex;
     flex-direction:column;
@@ -30,16 +25,32 @@ const Container = styled.div`
     justify-content:space-between;
 
 
+    .button{        
+        text-align:center;        
+        user-select: none;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 800;        
+        color:#EDEDED;
+        
+        transition: all 1s;
+    }
+    .button:hover{
+        cursor: pointer;
+        background-color:rgb(128, 32, 32);        
+    }
+
+
     .header{
         flex:10%;
-        .logo{        
-            font-size:30px;
-            margin-top:30px;
+        .logo{
+            margin:10px;
+            font-size:25px;
             font-family: 'Mr Dafoe', cursive;
             color:rgba(41, 128, 185,1.0);
             text-shadow: #000000 3px 2px 0;
             user-select: none;      
         }
+
     }
     
 
@@ -49,25 +60,7 @@ const Container = styled.div`
 
         display:flex;
         flex-direction:column;
-        justify-content:center;
-
-
-        .button{
-            border-radius: 25px;
-            text-align:right;
-            margin:10px;
-            padding:5px 20px 5px 0px;
-            user-select: none;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 800;        
-            color:#EDEDED;
-            
-            transition: all 1s;
-        }
-        .button:hover{
-            cursor: pointer;
-            background-color:rgb(128, 32, 32);        
-        }
+        justify-content:flex-start;
     }
 
     .footer{
@@ -79,7 +72,7 @@ const Container = styled.div`
 
 `;
 
-class SideBar extends React.Component{
+class V_SideBar extends React.Component{
 
     constructor(props){
         super(props);
@@ -93,14 +86,17 @@ class SideBar extends React.Component{
         e.preventDefault();    
     }
 
+    componentDidMount(){        
+    }
+
     render(){
         return(
             <Container isVTK={this.props.isVTK}>
                 <div class="header">
-                    <div class="logo">EJ Shim</div>
+                    {this.props.menuItem}
                 </div>
                 <div class="body">
-                    {this.props.menuItem}                   
+                    
                 </div>
                 <div class="footer"></div>
 
@@ -110,4 +106,4 @@ class SideBar extends React.Component{
     }
 }
 
-export default SideBar;
+export default V_SideBar;

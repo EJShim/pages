@@ -7,16 +7,19 @@ const Container = styled.div`
     @media screen and (max-width: 600px) {
             flex:100% 1 0;
     }
-    flex:80% 1 0;
+
+
+    flex:80% 1 0;    
+
     display: flex;        
     flex-wrap: wrap;
-    background-color:cyan;
+    background-color: #001f3f; 
 
     div{        
         flex:1 1 0;
         display:flex;
         flex-direction:column;
-        flex-wrap:wrap;
+        flex-wrap:nowrap;
         
 
         &.left{

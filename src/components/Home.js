@@ -30,7 +30,7 @@ const Container = styled.div`
 
     @media screen and (max-width: 600px) {
         flex:100%;
-    }
+    }    
 
     flex:80%;
     display:flex;
