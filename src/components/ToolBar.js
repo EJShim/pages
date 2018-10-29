@@ -10,7 +10,7 @@ const Container = styled.div`
     flex-basis: min-content;
     background: rgba(32,32,32, 1.0);
     text-align:center;
-    overflow:scroll;
+    overflow:auto;
     display:none;
 
 

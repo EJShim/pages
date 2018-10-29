@@ -23,7 +23,7 @@ const Container = styled.div`
     animation : ${animation_background} 5s ease infinite;
     padding: 0 4px;
     height:100vh;
-    overflow:scroll;
+    overflow:auto;
     
     .header{
         flex:100%;

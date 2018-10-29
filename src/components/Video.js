@@ -20,7 +20,7 @@ const Container = styled.div`
     background-size: 200% 200%;
     animation : ${animation_background} 5s ease infinite;
     height:100vh;
-    overflow:scroll;
+    overflow:auto;
 `;
 
 

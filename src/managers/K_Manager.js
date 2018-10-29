@@ -18,7 +18,7 @@ class K_Manager{
     constructor(){
         if(K_Manager.instance) return K_Manager.instance;
 
-        this.genericRenderWindowCollection = [];
+        this.genericRenderWindowCollection = [null, null, null, null];
 
         K_Manager.instance = this
     }
@@ -27,32 +27,32 @@ class K_Manager{
         return new K_Manager();
     }
 
-    AddRenderer(container){
-        const genericRenderWindow = vtkGenericRenderWindow.newInstance();
+    AddRenderer(container, idx){
 
-        // VTK renderWindow/renderer
-        // const renderWindow = genericRenderWindow.getRenderWindow();
-        const renderer = genericRenderWindow.getRenderer();
-        renderer.setBackground(Math.random()*0.2, Math.random()*0.5, Math.random()*0.5);        
-        //not properly working on microsoft edge,, there is no standard for handling resize event
-        // new ResizeSensor(container, genericRenderWindow.resize);
+        if(this.genericRenderWindowCollection[idx] == null){
+            //Initialize
+            const genericRenderWindow = vtkGenericRenderWindow.newInstance();
+            this.genericRenderWindowCollection[idx] = genericRenderWindow;
 
-
-
-        ///Temp
-        const coneSource = vtkConeSource.newInstance({ height: 1.0 });
-        const mapper = vtkMapper.newInstance();
-        mapper.setInputConnection(coneSource.getOutputPort());
-        const actor = vtkActor.newInstance();
-        actor.setMapper(mapper);
-        actor.getProperty().setColor(Math.random(), Math.random(), Math.random());
-        renderer.addActor(actor);
+            
+            const renderer = genericRenderWindow.getRenderer();
+            renderer.setBackground(0, 0, 0);        
 
 
-        this.genericRenderWindowCollection.push(genericRenderWindow);
+            ///Temp
+            const coneSource = vtkConeSource.newInstance({ height: 1.0 });
+            const mapper = vtkMapper.newInstance();
+            mapper.setInputConnection(coneSource.getOutputPort());
+            const actor = vtkActor.newInstance();
+            actor.setMapper(mapper);
+            actor.getProperty().setColor(Math.random(), Math.random(), Math.random());
+            renderer.addActor(actor);
 
-
-        genericRenderWindow.setContainer(container);
+         
+        }
+        this.genericRenderWindowCollection[idx].setContainer(container);
+        //genericRenderWindow.setContainer(container);
+        
     }
 
     Clear(){        

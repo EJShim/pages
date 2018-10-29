@@ -37,7 +37,7 @@ const Container = styled.div`
     align-items: stretch;
     flex-direction:column;
     height:100vh;
-    overflow:scroll;
+    overflow:auto;
 `;
 
 const Content = styled.div`

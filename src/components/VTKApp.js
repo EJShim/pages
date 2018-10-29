@@ -10,12 +10,18 @@ const Container = styled.div`
     flex:80% 1 0;
     display: flex;        
     flex-wrap: wrap;
+    background-color:AntiqueWhite;
 
     div{        
         flex:1 1 0;
         display:flex;
         flex-direction:column;
-        flex-wrap:wrap;        
+        flex-wrap:wrap;
+        
+
+        &.left{
+            padding-right:1px;
+        }        
     }
 `;
 
@@ -46,6 +52,14 @@ const Content = styled.div`
     flex:1 1 0;
     animation: ${animation_intro} ${props=>props.introDelay} ease;
 
+    &#viewer0{
+            margin-bottom: 1px;            
+        }
+
+    &#viewer2{
+        margin-bottom:1px;
+    }
+
 `;
 
 class VTKApp extends React.Component{
@@ -73,10 +87,10 @@ class VTKApp extends React.Component{
 
     componentDidMount(){
         //After render() function
-        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer0') );
-        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer1') );
-        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer2') );
-        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer3') );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer0'), 0 );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer1'), 1 );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer2'), 2 );
+        K_Manager.Mgr().AddRenderer( document.querySelector('#viewer3'), 3 );
 
         //Call Initial Renderer
         K_Manager.Mgr().HandleResize();
@@ -92,18 +106,18 @@ class VTKApp extends React.Component{
     }
 
     componentWillUnmount(){
-        K_Manager.Mgr().Clear();
+        
     }
 
     render(){
         //4 renderwindows
         return(
             <Container>
-                <div>
+                <div class="left">
                     {this.renderWindow[0]}
                     {this.renderWindow[1]}
                 </div>
-                <div>                                
+                <div class="right">                                
                     {this.renderWindow[2]}
                     {this.renderWindow[3]}
                 </div>
