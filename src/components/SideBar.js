@@ -17,11 +17,10 @@ const Container = styled.div`
 
     
 
-    transition:flex 1s;
-    
+    transition:all 1s;
     ${props => props.isVTK ? "flex:0%" : "flex:20%"};
-    flex-basis: min-content;
-    background: rgba(32,32,32, 1.0);
+    ${props => props.isVTK ? "background-color: #001f3f" : "background-color: rgb(32,32,32)"};
+    flex-basis: min-content;    
     text-align:center;
     display:flex;
     flex-direction:column;

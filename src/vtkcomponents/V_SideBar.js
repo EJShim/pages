@@ -12,11 +12,11 @@ const Container = styled.div`
         display:none;
     }
 
-    transition:flex 1s;
+    transition:all 1s;
     ${props => props.isVTK ? "flex:20%" : "flex:0%"};
+    ${props => props.isVTK ? "background-color: #001f3f" : "background-color: rgb(32,32,32)"};
             
-    flex-basis: min-content;
-    background-color: #001f3f;
+    flex-basis: min-content;    
     text-align:center;
     display:flex;
     flex-direction:column;
@@ -29,7 +29,7 @@ const Container = styled.div`
         text-align:center;        
         user-select: none;
         font-family: 'Open Sans', sans-serif;
-        font-weight: 800;        
+        font-weight: 300;        
         color:#EDEDED;
         
         transition: all 1s;

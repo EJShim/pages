@@ -40,25 +40,31 @@ const Container = styled.div`
     overflow:auto;
 `;
 
-const Content = styled.div`
+const Content = styled.section`
     flex: 1 0 95vh;
     display:flex;    
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color:${props=>props.background};
-     
-`;
 
-const GradientContent = styled.div`
-    flex: 1 0 90vh;
-    display:flex;    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(342deg, #00F260, #0575E6);
-    background-size: 150% 150%;
-    animation : ${animation_background} 5s ease infinite;
+    &.video-wrapper{
+
+        position: relative;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &.gradient{
+        background: linear-gradient(342deg, #00F260, #0575E6);
+        background-size: 150% 150%;
+        animation : ${animation_background} 5s ease infinite;
+    }
+     
 `;
 
 
@@ -91,25 +97,23 @@ class Home extends React.Component{
         
 
         return(
-            <Container>                
-                <GradientContent>
-                    <IntroTitle>EJ Shim</IntroTitle>
-                    <h2> Second Candidate </h2>
-                </GradientContent>
+            <Container>                                
                 <Content background="#111111">
                     <IntroTitle>EJ Shim</IntroTitle>
                     <h2> First Intro Candidate </h2>
                 </Content>                                           
                 <Content background="#FF4136">
                     <h2> Third Candidate.. will add more </h2>
-                </Content>
-                <Content background="#0074D9">                    
-                </Content>
+                </Content>                
                 <Content background="#006E6D">                    
                 </Content>
                 <Content background="#3D9970">  
                 </Content>
                 <Content background="#FFDC00">                    
+                </Content>
+                <Content className="gradient">
+                    <IntroTitle>EJ Shim</IntroTitle>
+                    <h2> Second Candidate </h2>
                 </Content>
             </Container>
         );
