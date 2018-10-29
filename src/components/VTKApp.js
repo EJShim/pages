@@ -10,7 +10,7 @@ const Container = styled.div`
     flex:80% 1 0;
     display: flex;        
     flex-wrap: wrap;
-    background-color:AntiqueWhite;
+    background-color:cyan;
 
     div{        
         flex:1 1 0;
