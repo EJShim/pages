@@ -14,6 +14,7 @@ class K_MeshManager{
 
     initializeMesh(){
 
+        
         ///Temp
         const coneSource = vtkConeSource.newInstance({ height: 1.0 });
         const mapper = vtkMapper.newInstance({scalarVisibility:false});
@@ -24,11 +25,12 @@ class K_MeshManager{
 
         this.actorCollection.push(actor);
 
+
+
         return actor;
     }
 
-
-    onImportMesh(){        
+    onImportMesh(){
          //Create File Dialog
         let fileDialog = document.createElement("input");
         fileDialog.setAttribute("type", "file");
@@ -48,23 +50,22 @@ class K_MeshManager{
             const file_path = URL.createObjectURL(file);
             console.log(file_path);
 
-            const reader = vtkSTLReader.newInstance();
-            reader.setUrl(file_path, { binary: true }).then(()=>{
-                for(let actor of this.actorCollection){
-                    actor.getMapper().setInputConnection(reader.getOutputPort());
-                }
-                K_Manager.Mgr().Redraw();
-            });
+
+            this.importMesh(file_path);
 
 
-            
-
-
-            
-
-
-            //Remove Dialog??
         });
+    }
+
+    importMesh(path){
+        const reader = vtkSTLReader.newInstance();
+        reader.setUrl(path, { binary: true }).then(()=>{
+            for(let actor of this.actorCollection){
+                actor.getMapper().setInputConnection(reader.getOutputPort());
+            }
+            K_Manager.Mgr().Redraw();
+        });
+        
     }
 }
 

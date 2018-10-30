@@ -2,7 +2,6 @@ import React from 'react';
 import styled, {keyframes} from  'styled-components';
 import K_Manager from 'K_Manager'
 
-
 const Container = styled.div`
     @media screen and (max-width: 600px) {
             flex:100% 1 0;

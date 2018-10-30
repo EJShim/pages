@@ -13,14 +13,18 @@ module.exports = {
             { test: /\.js$/, loader: 'babel-loader', query:{presets:['babel-preset-env', 'babel-preset-react']}},
             { test: /\.css$/, use: [ 'style-loader', 'css-loader' ]},
             { test: /\.scss$/, use: [ 'style-loader', 'css-loader', 'sass-loader' ]},
-            { test: /\.(mov|mp4)$/, use: [{loader: 'file-loader',options: {name: '[path][name].[ext]'}  }]}
+            { test: /\.(mov|mp4)$/, use: [{loader: 'file-loader',options: {name: '[path][name].[ext]'}  }]},
+            { test: /\.(stl)$/, use: [{loader: 'file-loader',options: {name: '[path][name].[ext]'}  }]}
         ].concat(vtkRules)
     },
     plugins:[
         new CopyPlugin([
             {from:path.join(__dirname, 'public/index.html'), to:path.join(__dirname,'build', 'public')},
             {from:path.join(__dirname, 'public/index.css'), to:path.join(__dirname,'build', 'public')},
-            {from:path.join(__dirname, 'public/favicon.ico'), to:path.join(__dirname,'build', 'public')}            
+            {from:path.join(__dirname, 'public/favicon.ico'), to:path.join(__dirname,'build', 'public')},
+            {from: path.join(__dirname, 'node_modules', 'itk', 'WebWorkers'),to: path.join(__dirname, 'build', 'public', 'itk', 'WebWorkers')},
+            {from: path.join(__dirname, 'node_modules', 'itk', 'ImageIOs'),to: path.join(__dirname, 'build', 'public', 'itk', 'ImageIOs')},
+            {from: path.join(__dirname, 'node_modules', 'itk', 'MeshIOs'),to: path.join(__dirname, 'build', 'public', 'itk', 'MeshIOs')},
         ])
     ],
     resolve:{

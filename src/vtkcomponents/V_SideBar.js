@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, {keyframes} from 'styled-components';
-
-
-
+import VolumeController from 'vtkcomponents/VolumeController';
+import VolumeTree from 'vtkcomponents/VolumeTree';
 
 
 const Container = styled.div`
@@ -56,7 +55,7 @@ const Container = styled.div`
 
 
     .body{        
-        flex:80%;
+        flex:70%;
 
         display:flex;
         flex-direction:column;
@@ -64,7 +63,7 @@ const Container = styled.div`
     }
 
     .footer{
-        flex:10%;
+        flex:20%;
     }
 
 
@@ -96,6 +95,8 @@ class V_SideBar extends React.Component{
                     {this.props.menuItem}
                 </div>
                 <div class="body">
+                    <VolumeTree/>
+                    <VolumeController/>
                     
                 </div>
                 <div class="footer"></div>

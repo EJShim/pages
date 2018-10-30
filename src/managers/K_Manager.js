@@ -48,12 +48,46 @@ class K_Manager{
         if(this.genericRenderWindowCollection[idx] == null){
             //Initialize
             const genericRenderWindow = vtkGenericRenderWindow.newInstance();
+
+
             this.genericRenderWindowCollection[idx] = genericRenderWindow;
 
             
             const renderer = genericRenderWindow.getRenderer();
-            renderer.setBackground(0, 0, 0);        
+            renderer.setBackground(0, 0, 0);
 
+            
+            
+            
+            if(idx != 0){
+                const interactorStyle = vtkInteractorStyleManipulator.newInstance();
+                interactorStyle.removeAllMouseManipulators();
+                genericRenderWindow.getInteractor().setInteractorStyle(interactorStyle);
+
+                // renderer.getActiveCamera().parallelProjection=true;
+                renderer.getActiveCamera().setParallelProjection(true);
+
+            }
+
+
+            switch(idx){
+                case 1:
+                    renderer.getActiveCamera().azimuth(90);
+                    renderer.getActiveCamera().roll(-90);
+                    break;
+                case 2:
+                    renderer.getActiveCamera().elevation(90);
+                    break;
+                case 3:
+                    
+                    break;
+                default:
+                break;
+            }
+
+
+
+            //This is Test
             let actor = K_Manager.MeshMgr().initializeMesh();
             renderer.addActor(actor);
         }
@@ -62,9 +96,18 @@ class K_Manager{
         
     }
 
+    getRenderWindow(idx){
+        return this.genericRenderWindowCollection[idx].getRenderWindow();
+    }
 
-    Clear(){        
-        this.genericRenderWindowCollection = [];
+    getRenderer(idx){
+        return this.genericRenderWindowCollection[idx].getRenderer();
+    }
+
+    clear(){
+        for(let renWin of this.genericRenderWindowCollection){
+            renWin.getRenderer().removeAllViewProps()
+        }
     }
 
     HandleResize(){
@@ -73,14 +116,31 @@ class K_Manager{
         }
     }
 
-    Redraw(){
-        for(let genericWindow of this.genericRenderWindowCollection){
+    
 
-            const renderWindow = genericWindow.getRenderWindow();
-            const renderer = genericWindow.getRenderer();
+    Redraw(idx){
+
+        if(idx == null){
+            for(let genericWindow of this.genericRenderWindowCollection){
+
+                const renderWindow = genericWindow.getRenderWindow();
+                const renderer = genericWindow.getRenderer();
+                renderer.resetCamera();
+                renderer.resetCameraClippingRange();
+                renderer.getActiveCamera().zoom(1.5);
+    
+                renderWindow.render();
+            }
+        }else{
+            const renderWindow = this.genericRenderWindowCollection[idx].getRenderWindow(); 
+            const renderer = this.genericRenderWindowCollection[idx].getRenderer();
             renderer.resetCamera();
+            renderer.resetCameraClippingRange();
+            renderer.getActiveCamera().zoom(1.5);
+
             renderWindow.render();
         }
+        
         
     }
 }
