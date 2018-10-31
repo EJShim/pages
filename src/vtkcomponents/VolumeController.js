@@ -7,6 +7,7 @@ const Container = styled.div`
     background-color:#8C92AC;
     margin:5px;
     display:flex;
+    border-radius:15px;
 
 `;
 
@@ -28,7 +29,7 @@ class VolumeController extends React.Component{
 
     render(){
         return(
-            <Container id="volumeController" />
+            <Container id="volumeController"/>
         );
     }
 

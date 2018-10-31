@@ -81,18 +81,20 @@ class K_VolumeManager{
                     }
                 }
             });
+
+            window.addEventListener("resize", ()=>{this.resizeGaussianWidget()});
         }
 
         this.gaussianWidget.setContainer(element);
         this.gaussianContainer = element;
+
+        this.resizeGaussianWidget();
 
        
     }
 
     resizeGaussianWidget(){
         const dims = this.gaussianContainer.getBoundingClientRect();
-
-        console.log(dims)
 
         this.gaussianWidget.setSize(
             Math.floor(dims.width),
@@ -106,12 +108,19 @@ class K_VolumeManager{
 
         this.gaussianWidget.setDataArray(this.imageData.getPointData().getScalars().getData());
         this.gaussianWidget.applyOpacity(this.otf);
-        this.gaussianWidget.setColorTransferFunction(this.ctf);
-
+        this.gaussianWidget.setColorTransferFunction(this.ctf);        
+        console.log(this.gaussianWidget);
+        //on opacity change event handler
         this.gaussianWidget.onOpacityChange(()=>{
+            //Set Opacity
             this.gaussianWidget.applyOpacity(this.otf);
+            this.updateImageFromGaussian(this.gaussianWidget.getGaussians());
             if(!K_Manager.Mgr().getRenderWindow(0).getInteractor().isAnimating()){
-                K_Manager.Mgr().getRenderWindow(0).render();
+
+                for(let i=0 ; i<4 ; i++){
+                    K_Manager.Mgr().getRenderWindow(i).render();
+                }
+                
             }
         });
 
@@ -122,7 +131,9 @@ class K_VolumeManager{
         this.ctf.addRGBPoint(scalarRange[1], 1.0, 1.0, 1.0);
 
         this.gaussianWidget.addGaussian(0.75, 1, 0.3, 0, 0);            
+        this.updateImageFromGaussian(this.gaussianWidget.getGaussians());
         this.gaussianWidget.bindMouseListeners();
+        
 
 
     }
@@ -154,11 +165,6 @@ class K_VolumeManager{
             //Initialize Property
             this.ctf = vtkColorTransferFunction.newInstance();
             this.otf = vtkPiecewiseFunction.newInstance();
-
-   
-
-
-
 
 
             this.volume.getProperty().setInterpolationTypeToFastLinear();
@@ -207,6 +213,75 @@ class K_VolumeManager{
         this.updateGaussianWidget();
 
         K_Manager.Mgr().Redraw();
+    }
+
+    updateImageFromGaussian(gaussian){
+        if(gaussian.legnth == 0) return;
+        if(this.imageData == null) return;
+        
+        
+        const scalarRange = this.imageData.getPointData().getScalars().getRange();
+        
+        const position = gaussian[0].position;
+        const width = gaussian[0].width;
+
+        //position and width are normalized
+
+        const scalarWidth = scalarRange[1] - scalarRange[0] + 1;
+
+
+        const colorLevel = scalarRange[0] + position*scalarWidth;
+        const colorWindow = scalarWidth * width;
+
+        this.updateColorLevel(colorLevel);
+        this.updateColorWindow(colorWindow);
+    }
+
+
+
+    updateColorLevel(level){
+        if(this.slice[0] == null) return;
+
+        for(let slice of this.slice){
+            slice.getProperty().setColorLevel(level);
+        }
+    }   
+
+    updateColorWindow(colorWindow){
+        if(this.slice[0] == null) return;
+
+        for(let slice of this.slice){
+            slice.getProperty().setColorWindow(colorWindow);
+        }
+    }
+
+    updateSlice(idx, direction){
+        if(this.imageData == null) return;
+
+        const extent = this.imageData.getExtent()        
+
+        const mapper = this.slice[idx].getMapper(); 
+        const currentIdx = mapper.getSlice();
+        const destIdx = currentIdx + direction;
+
+        if(destIdx < 0 || destIdx > extent[2*idx+1]) return;
+
+        switch(idx){
+            case 0:
+                mapper.setISlice(destIdx);
+            break;
+            case 1:
+                mapper.setJSlice(destIdx);
+            break;
+            case 2:
+                mapper.setKSlice(destIdx);
+            break;
+            default:
+            break;
+        }
+
+        K_Manager.Mgr().Redraw(idx+1);
+
     }
 
     convertItkToVtkImage(itkImage, options={}){

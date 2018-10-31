@@ -103,6 +103,10 @@ class VTKApp extends React.Component{
             K_Manager.Mgr().HandleResize();
             K_Manager.Mgr().Redraw();
         }, this.maxDelay);
+
+
+        //Resize Gaussian Widget
+        K_Manager.VolumeMgr().resizeGaussianWidget();
         
         
     }

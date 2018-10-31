@@ -8,7 +8,7 @@ const Container = styled.tr`
     margin:5px;
     display:flex;
     flex-direction:column;
-    border-radius:25px;
+    border-radius:15px;
     padding: 10 0 10 0;
 
     tr:nth-child(even) {

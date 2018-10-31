@@ -2,6 +2,7 @@ import React from 'react';
 import styled, {keyframes} from 'styled-components';
 import VolumeController from 'vtkcomponents/VolumeController';
 import VolumeTree from 'vtkcomponents/VolumeTree';
+import K_Manager from 'K_Manager';
 
 
 const Container = styled.div`
@@ -90,7 +91,7 @@ class V_SideBar extends React.Component{
 
     render(){
         return(
-            <Container isVTK={this.props.isVTK}>
+            <Container isVTK={this.props.isVTK} onTransitionEnd={()=>{K_Manager.VolumeMgr().resizeGaussianWidget()}} >
                 <div class="header">
                     {this.props.menuItem}
                 </div>

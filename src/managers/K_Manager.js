@@ -61,9 +61,12 @@ class K_Manager{
             
             if(idx != 0){
                 const interactorStyle = vtkInteractorStyleManipulator.newInstance();
+                console.log(genericRenderWindow.getInteractor());                
+
+
                 interactorStyle.removeAllMouseManipulators();
                 genericRenderWindow.getInteractor().setInteractorStyle(interactorStyle);
-
+                genericRenderWindow.getInteractor().onMouseWheel((e)=>{this.onMouseWheelEvent(e, idx)});
                 // renderer.getActiveCamera().parallelProjection=true;
                 renderer.getActiveCamera().setParallelProjection(true);
 
@@ -94,6 +97,10 @@ class K_Manager{
         this.genericRenderWindowCollection[idx].setContainer(container);
         //genericRenderWindow.setContainer(container);
         
+    }
+
+    onMouseWheelEvent(e, idx){
+        K_Manager.VolumeMgr().updateSlice(idx-1, e.spinY)
     }
 
     getRenderWindow(idx){
