@@ -4,6 +4,9 @@ import vtkInteractorStyleManipulator from 'vtk.js/Sources/Interaction/Style/Inte
 import K_MeshManager from 'managers/K_MeshManager.js'
 import K_VolumeManager from 'managers/K_VolumeManager.js'
 
+import V_LogWidget from 'vtkcomponents/V_LogWidget';
+
+
 //For Test
 import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 
@@ -15,10 +18,13 @@ class K_Manager{
     static meshManager;
     static volumeManager;
 
+
     constructor(){
         if(K_Manager.instance) return K_Manager.instance;
 
         this.genericRenderWindowCollection = [null, null, null, null];
+
+
 
         K_Manager.instance = this
     }
@@ -61,8 +67,6 @@ class K_Manager{
             
             if(idx != 0){
                 const interactorStyle = vtkInteractorStyleManipulator.newInstance();
-                console.log(genericRenderWindow.getInteractor());                
-
 
                 interactorStyle.removeAllMouseManipulators();
                 genericRenderWindow.getInteractor().setInteractorStyle(interactorStyle);
@@ -98,6 +102,7 @@ class K_Manager{
         //genericRenderWindow.setContainer(container);
         
     }
+
 
     onMouseWheelEvent(e, idx){
         K_Manager.VolumeMgr().updateSlice(idx-1, e.spinY)

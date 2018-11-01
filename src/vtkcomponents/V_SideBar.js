@@ -3,7 +3,7 @@ import styled, {keyframes} from 'styled-components';
 import VolumeController from 'vtkcomponents/VolumeController';
 import VolumeTree from 'vtkcomponents/VolumeTree';
 import K_Manager from 'K_Manager';
-
+import V_LogWidget from 'vtkcomponents/V_LogWidget';
 
 const Container = styled.div`
 
@@ -65,12 +65,10 @@ const Container = styled.div`
 
     .footer{
         flex:20%;
+        display:flex;
     }
-
-
-
-
 `;
+
 
 class V_SideBar extends React.Component{
 
@@ -90,6 +88,8 @@ class V_SideBar extends React.Component{
     }
 
     render(){
+
+
         return(
             <Container isVTK={this.props.isVTK} onTransitionEnd={()=>{K_Manager.VolumeMgr().resizeGaussianWidget()}} >
                 <div class="header">
@@ -100,7 +100,9 @@ class V_SideBar extends React.Component{
                     <VolumeController/>
                     
                 </div>
-                <div class="footer"></div>
+                <div class="footer">
+                    <V_LogWidget/>
+                </div>
 
                 
             </Container>            
