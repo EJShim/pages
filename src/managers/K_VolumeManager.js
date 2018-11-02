@@ -258,13 +258,23 @@ class K_VolumeManager{
     updateSlice(idx, direction){
         if(this.imageData == null) return;
 
-        const extent = this.imageData.getExtent()        
+        const extent = this.imageData.getExtent()
 
+        //Get Direction
+        if(direction < 0){
+            direction = -1;
+        }else{ 
+            direction = 1;
+        }
+        
         const mapper = this.slice[idx].getMapper(); 
         const currentIdx = mapper.getSlice();
         const destIdx = currentIdx + direction;
 
         if(destIdx < 0 || destIdx > extent[2*idx+1]) return;
+
+
+        
 
         switch(idx){
             case 0:
