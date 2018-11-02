@@ -1,3 +1,4 @@
+import {createStore} from 'redux';
 import vtkGenericRenderWindow from 'vtk.js/Sources/Rendering/Misc/GenericRenderWindow'
 import vtkInteractorStyleManipulator from 'vtk.js/Sources/Interaction/Style/InteractorStyleManipulator';
 //Mesh Manager
@@ -9,20 +10,31 @@ import V_LogWidget from 'vtkcomponents/V_LogWidget';
 
 //For Test
 import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
+import { setLoggerFunction } from 'vtk.js/Sources/macro';
 
 
-//test
+//define action type.. for redux
+const SETLOG = 'SETLOG';
+
+
+
 
 class K_Manager{
     static instance;
     static meshManager;
     static volumeManager;
+    static state;
 
 
     constructor(){
         if(K_Manager.instance) return K_Manager.instance;
 
         this.genericRenderWindowCollection = [null, null, null, null];
+
+        K_Manager.state = {
+            message:JSON.stringify([])
+        };
+        this.store = createStore(this.reducer);
 
 
 
@@ -153,7 +165,24 @@ class K_Manager{
             renderWindow.render();
         }
         
-        
+    }
+
+    setLog(message){
+
+        let current = JSON.parse(K_Manager.state.message);
+        current.push(message);
+        K_Manager.state.message = JSON.stringify(current)
+        this.store.dispatch({type:SETLOG, message:K_Manager.state.message});
+    }
+    
+
+    reducer(state = K_Manager.state, action){
+        switch(action.type){
+            case SETLOG:
+            return {message:action.message};
+            default:
+            return state;
+        }
     }
 }
 

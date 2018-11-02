@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import * as serviceWorker from 'serviceWorker';
+import {createStore} from 'redux';
 //Module
 import App from 'App';
-
+import K_Manager from 'K_Manager';
 
 
 // Render GUI
 ReactDOM.render(
-        <App/>
+        <Provider store={K_Manager.Mgr().store}>
+                <App/>
+        </Provider>
+        
 , 
 document.getElementById('root'));
 

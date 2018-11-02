@@ -32,6 +32,7 @@ class K_VolumeManager{
     }
 
     onImportVolume(){
+        K_Manager.Mgr().setLog("import volume triggered");
 
         let fileDialog = document.createElement("input");
         fileDialog.setAttribute("type", "file");
@@ -41,11 +42,12 @@ class K_VolumeManager{
         fileDialog.addEventListener("change", (event)=>{                
             //If no file selected
             if(event.target.files.length < 1) {
-                console.log("no file selected");
+                K_Manager.Mgr().setLog("no file selected");
                 return;
             }
     
             //iterate file in this directory
+            K_Manager.Mgr().setLog(event.target.files.length, "files selected!")
             this.importVolume(event.target.files);
         });
     }
@@ -109,7 +111,7 @@ class K_VolumeManager{
         this.gaussianWidget.setDataArray(this.imageData.getPointData().getScalars().getData());
         this.gaussianWidget.applyOpacity(this.otf);
         this.gaussianWidget.setColorTransferFunction(this.ctf);        
-        console.log(this.gaussianWidget);
+        
         //on opacity change event handler
         this.gaussianWidget.onOpacityChange(()=>{
             //Set Opacity
@@ -142,12 +144,10 @@ class K_VolumeManager{
         readImageDICOMFileSeries(null, files).then(({image, webWorker})=>{
             webWorker.terminate();
 
-            console.log(image);
-
             let imageData = this.convertItkToVtkImage(image);
             this.setImageData(imageData);
         }).catch((err)=>{
-            console.log(err);
+            K_Manager.Mgr().setLog(err);
         });
     }
 
@@ -190,8 +190,7 @@ class K_VolumeManager{
 
 
         const extent = imageData.getExtent()
-        console.log(extent);
-        
+
         this.slice[0].getMapper().setISlice(Math.floor((extent[0]+extent[1])/2));
         this.slice[1].getMapper().setJSlice(Math.floor((extent[2]+extent[3])/2));
         this.slice[2].getMapper().setKSlice(Math.floor((extent[4]+extent[5])/2));
@@ -220,8 +219,9 @@ class K_VolumeManager{
         if(this.imageData == null) return;
         
         
-        const scalarRange = this.imageData.getPointData().getScalars().getRange();
-        
+        // const scalarRange = this.imageData.getPointData().getScalars().getRange();
+        const scalarRange = [-1024, 3096];
+
         const position = gaussian[0].position;
         const width = gaussian[0].width;
 

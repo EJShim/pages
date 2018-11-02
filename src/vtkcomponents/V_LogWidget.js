@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, {keyframes} from 'styled-components';
+import { connect } from 'react-redux';
 
 
 const Container = styled.div`
@@ -17,29 +18,33 @@ const Container = styled.div`
 
 
 class V_LogWidget extends React.Component{
-
     constructor(props){
         super(props);
 
-        this.state = {
-            content : "<p>nothing</p><p>log widget</p>"
-        }
     }
-
 
 
     render(){
 
+
+        const messageData = JSON.parse(this.props.message);
+        const components = [];
+        for(let message of messageData){
+            components.push(<p>{message}</p> );
+        }
+
         return(
             <Container>
-                {this.state.content}
+                {components}
             </Container>
         );
         
     }
-
-
-
 }
 
-export default V_LogWidget;
+export default connect(
+    (state) => ({
+        message : state.message
+    }), 
+)(V_LogWidget);
+
