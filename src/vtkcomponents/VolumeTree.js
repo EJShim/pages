@@ -6,15 +6,23 @@ const Container = styled.tr`
     flex:1;
     background-color:#8C92AC;
     margin:5px;
-    display:flex;
-    flex-direction:column;
-    border-radius:15px;
-    padding: 10 0 10 0;
+    
+    border-radius :5px;    
+    overflow:auto;
 
-    tr:nth-child(even) {
+
+    div{
+        padding:10px;
+        flex:1;
+        display:flex;
+        flex-direction:column;
+
+    }
+
+    div tr:nth-child(even) {
         background-color: #c2c2c2;
     }
-    tr:nth-child(odd) {
+    div tr:nth-child(odd) {
         background-color: #a2a2a2;
     }
 `;
@@ -27,66 +35,69 @@ class VolumeTree extends React.Component{
     render(){
         return(
             <Container>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th> 
-                    <th>Age</th>
-                </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td>Smith</td> 
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td> 
-                    <td>94</td>
-                </tr>
+                <div>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th> 
+                        <th>Age</th>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td> 
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td> 
+                        <td>94</td>
+                    </tr>
+                </div>
+                
                            
             </Container>
         );
