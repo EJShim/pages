@@ -79,7 +79,7 @@ class App extends React.Component{
 
         return(
             <Container>
-                {isVTK ? <V_ToolBar menuItem={this.vtkMenu} isVTK={isVTK}/> : <ToolBar menuItem={this.menuItem} isVTK={isVTK}/> }
+                {isVTK ? <V_ToolBar menuItem={this.vtkMenu}/> : <ToolBar menuItem={this.menuItem}/> }
                 
                 
 
