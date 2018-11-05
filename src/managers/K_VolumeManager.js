@@ -352,8 +352,12 @@ class K_VolumeManager{
     updateSlice(idx, direction){
         if(this.imageData == null) return;
 
-        const extent = this.imageData.getExtent()        
 
+        ///Normalize Direction
+        if(direction < 0) direction = -1;
+        else direction = 1;
+
+        const extent = this.imageData.getExtent()        
         const mapper = this.slice[idx].getMapper(); 
         const currentIdx = mapper.getSlice();
         const destIdx = currentIdx + direction;
@@ -397,7 +401,7 @@ class K_VolumeManager{
         this.ctf.updateRange();
 
 
-
+        this.gaussianWidget.render();
         K_Manager.Mgr().Redraw();
     }
 
