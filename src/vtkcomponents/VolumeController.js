@@ -15,7 +15,6 @@ const Container = styled.div`
         height:20%;
         background-color:#9CA2BC;
         margin:5px 5px 0px 5px;
-        color:red;
     }
     #volumeController{
         flex:80%;    
@@ -40,12 +39,23 @@ class VolumeController extends React.Component{
         K_Manager.VolumeMgr().setGaussianWidget(document.querySelector("#volumeController"));
     }
 
+    onSelectionChanged(e){
+        K_Manager.VolumeMgr().setPresetColor(e.target.value);
+    }
+
+
 
 
     render(){
+        const presetNames = K_Manager.VolumeMgr().presetNames;
+        let presetAttrib = []
+        for(let preset of presetNames){
+            presetAttrib.push( <option value={preset}>{preset}</option> );
+        }
+
         return(
             <Container>
-                <div className="header"> Color preset will be here </div>
+                <select className="header" onChange={(e)=>{this.onSelectionChanged(e)}}> {presetAttrib} </select>
                 <div id="volumeController"/>                
             </Container>
         );

@@ -11,6 +11,7 @@ import vtkImageData from 'vtk.js/Sources/Common/DataModel/ImageData';
 import vtkDataArray from 'vtk.js/Sources/Common/Core/DataArray';
 import vtkImageMapper from 'vtk.js/Sources/Rendering/Core/ImageMapper';
 import vtkImageSlice from 'vtk.js/Sources/Rendering/Core/ImageSlice';
+import vtkColorMaps from 'vtk.js/Sources/Rendering/Core/ColorTransferFunction/ColorMaps';
 
 
 const { vtkErrorMacro } = macro;
@@ -28,6 +29,92 @@ class K_VolumeManager{
 
         this.gaussianWidget = null;
         this.gaussianContainer = null;
+
+
+        ///Colormap Preset
+        this.presetNames = [
+            '2hot',
+            'Asymmtrical Earth Tones (6_21b)',
+            'Black, Blue and White',
+            'Black, Orange and White',
+            'Black-Body Radiation',
+            'Blue to Red Rainbow',
+            'Blue to Yellow',
+            'Blues',
+            'BrBG',
+            'BrOrYl',
+            'BuGn',
+            'BuGnYl',
+            'BuPu',
+            'BuRd',
+            'CIELab Blue to Red',
+            'Cold and Hot',
+            'Cool to Warm',
+            'Cool to Warm (Extended)',
+            'GBBr',
+            'GYPi',
+            'GnBu',
+            'GnBuPu',
+            'GnRP',
+            'GnYlRd',
+            'Grayscale',
+            'Green-Blue Asymmetric Divergent (62Blbc)',
+            'Greens',
+            'GyRd',
+            'Haze',
+            'Haze_cyan',
+            'Haze_green',
+            'Haze_lime',
+            'Inferno (matplotlib)',
+            'Linear Blue (8_31f)',
+            'Linear YGB 1211g',
+            'Magma (matplotlib)',
+            'Muted Blue-Green',
+            'OrPu',
+            'Oranges',
+            'PRGn',
+            'PiYG',
+            'Plasma (matplotlib)',
+            'PuBu',
+            'PuOr',
+            'PuRd',
+            'Purples',
+            'Rainbow Blended Black',
+            'Rainbow Blended Grey',
+            'Rainbow Blended White',
+            'Rainbow Desaturated',
+            'RdOr',
+            'RdOrYl',
+            'RdPu',
+            'Red to Blue Rainbow',
+            'Reds',
+            'Spectral_lowBlue',
+            'Viridis (matplotlib)',
+            'Warm to Cool',
+            'Warm to Cool (Extended)',
+            'X Ray',
+            'Yellow 15',
+            'blot',
+            'blue2cyan',
+            'blue2yellow',
+            'bone_Matlab',
+            'coolwarm',
+            'copper_Matlab',
+            'gist_earth',
+            'gray_Matlab',
+            'heated_object',
+            'hsv',
+            'hue_L60',
+            'jet',
+            'magenta',
+            'nic_CubicL',
+            'nic_CubicYF',
+            'nic_Edge',
+            'pink_Matlab',
+            'rainbow',
+          ];
+
+        this.currentPresetName = 'X Ray';
 
     }
 
@@ -47,7 +134,7 @@ class K_VolumeManager{
             }
     
             //iterate file in this directory
-            K_Manager.Mgr().setLog(event.target.files.length, "files selected!")
+            K_Manager.Mgr().setLog(event.target.files.length)
             this.importVolume(event.target.files);
         });
     }
@@ -116,7 +203,7 @@ class K_VolumeManager{
         this.gaussianWidget.onOpacityChange(()=>{
             //Set Opacity
             this.gaussianWidget.applyOpacity(this.otf);
-            this.updateImageFromGaussian(this.gaussianWidget.getGaussians());
+            this.updateImageFromGaussian();
             if(!K_Manager.Mgr().getRenderWindow(0).getInteractor().isAnimating()){
 
                 for(let i=0 ; i<4 ; i++){
@@ -126,18 +213,15 @@ class K_VolumeManager{
             }
         });
 
-        //Initialize CTF
-        const scalarRange = this.imageData.getPointData().getScalars().getRange();
-        this.ctf.removeAllPoints();
-        this.ctf.addRGBPoint(scalarRange[0], 1.0, 1.0, 1.0);
-        this.ctf.addRGBPoint(scalarRange[1], 1.0, 1.0, 1.0);
 
-        this.gaussianWidget.addGaussian(0.75, 1, 0.3, 0, 0);            
-        this.updateImageFromGaussian(this.gaussianWidget.getGaussians());
+
+        //set OTF
+        this.otf.removeAllPoints();
+        this.gaussianWidget.addGaussian(0.75, 1, 0.3, 0, 0);        
         this.gaussianWidget.bindMouseListeners();
-        
 
-
+        //Set CTF
+        this.setPresetColor(this.currentPresetName);
     }
 
     importVolume(files){
@@ -147,7 +231,9 @@ class K_VolumeManager{
             let imageData = this.convertItkToVtkImage(image);
             this.setImageData(imageData);
         }).catch((err)=>{
-            K_Manager.Mgr().setLog(err);
+            K_Manager.Mgr().setLog("problem occured while reading dicom series");
+            K_Manager.Mgr().setLog("cannot handle multiple series for now..");
+            alert("error");
         });
     }
 
@@ -177,6 +263,8 @@ class K_VolumeManager{
 
                 this.slice[i] = vtkImageSlice.newInstance();
                 this.slice[i].setMapper(sliceMapper);
+                this.slice[i].getProperty().setScalarOpacity(this.otf);
+                this.slice[i].getProperty().setRGBTransferFunction(this.ctf);
             }
 
         }
@@ -214,11 +302,17 @@ class K_VolumeManager{
         K_Manager.Mgr().Redraw();
     }
 
-    updateImageFromGaussian(gaussian){
-        if(gaussian.legnth == 0) return;
+    updateImageFromGaussian(){
         if(this.imageData == null) return;
         
+        const colorDataRange = this.gaussianWidget.getOpacityRange();
+
+        this.ctf.setVectorModeToMagnitude();        
+        this.ctf.setMappingRange(...colorDataRange);
+        this.ctf.updateRange();
         
+
+        return;
         // const scalarRange = this.imageData.getPointData().getScalars().getRange();
         const scalarRange = [-1024, 3096];
 
@@ -258,23 +352,13 @@ class K_VolumeManager{
     updateSlice(idx, direction){
         if(this.imageData == null) return;
 
-        const extent = this.imageData.getExtent()
+        const extent = this.imageData.getExtent()        
 
-        //Get Direction
-        if(direction < 0){
-            direction = -1;
-        }else{ 
-            direction = 1;
-        }
-        
         const mapper = this.slice[idx].getMapper(); 
         const currentIdx = mapper.getSlice();
         const destIdx = currentIdx + direction;
 
         if(destIdx < 0 || destIdx > extent[2*idx+1]) return;
-
-
-        
 
         switch(idx){
             case 0:
@@ -292,6 +376,29 @@ class K_VolumeManager{
 
         K_Manager.Mgr().Redraw(idx+1);
 
+    }
+
+    setPresetColor(presetName){
+        K_Manager.Mgr().setLog(presetName);
+
+        this.currentPresetName = presetName;
+
+        if(this.imageData == null){
+            K_Manager.Mgr().setLog("Import Image First");
+            return;
+        }
+
+        const preset = vtkColorMaps.getPresetByName(presetName);
+        const colorDataRange = this.gaussianWidget.getOpacityRange();
+
+        this.ctf.setVectorModeToMagnitude();
+        this.ctf.applyColorMap(preset);
+        this.ctf.setMappingRange(...colorDataRange);
+        this.ctf.updateRange();
+
+
+
+        K_Manager.Mgr().Redraw();
     }
 
     convertItkToVtkImage(itkImage, options={}){

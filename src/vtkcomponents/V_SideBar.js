@@ -12,7 +12,7 @@ const Container = styled.div`
         display:none;
     }
 
-    transition:all 1s;
+    transition:flex 1s;
     ${props => props.isVTK ? "flex:20%" : "flex:0%"};
     ${props => props.isVTK ? "background-color: #001f3f" : "background-color: rgb(32,32,32)"};
             
