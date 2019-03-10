@@ -124,8 +124,7 @@ class K_VolumeManager{
         let fileDialog = document.createElement("input");
         fileDialog.setAttribute("type", "file");
         fileDialog.setAttribute("accept", ".dcm");    
-        fileDialog.setAttribute("multiple", true);
-        fileDialog.click();    
+        fileDialog.setAttribute("multiple", true);        
         fileDialog.addEventListener("change", (event)=>{                
             //If no file selected
             if(event.target.files.length < 1) {
@@ -137,6 +136,7 @@ class K_VolumeManager{
             K_Manager.Mgr().setLog(event.target.files.length)
             this.importVolume(event.target.files);
         });
+        fileDialog.click();
     }
 
     setGaussianWidget(element){
